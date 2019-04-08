@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-WFACat Pro.get_data
+WFACatPro.get_data
 ~~~~~~~~~~~~~~~~~~~
 This is a get_data module.
 """

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-WFACat Pro.settings
+WFACatPro.settings
 ~~~~~~~~~~~~~~~~~~~
 This is a setting module.
 """

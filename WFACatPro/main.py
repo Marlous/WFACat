@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-WFACat Pro.main
+WFACatPro.main
 ~~~~~~~~~~~~~~~~~~~
 This is a main module.
 """

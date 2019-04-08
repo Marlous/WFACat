@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-WFACat Pro.help
+WFACatPro.help
 ~~~~~~~~~~~~~~~~~~~
 This is a help module.
 """

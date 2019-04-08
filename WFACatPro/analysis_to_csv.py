@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-WFACat Pro.analysis_store_data
+WFACatPro.analysis_store_data
 ~~~~~~~~~~~~~~~~~~~
-This is a analysis_store_data module.
+This is a analysis store data module.
 """
 
 
