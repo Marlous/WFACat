@@ -38,6 +38,8 @@ def judge_and_create_db(db_name_params):
         if values == 'Y':
             cur_try.execute('drop database ' + db_name_params + ';')
             print('%s database deleted success!' % db_name_params)
+            cur_try.execute('create database ' + db_name_params + ';')
+            print('%s database created success!' % db_name_params)
         elif values == 'N':
             exit('Noting occured!')
 
@@ -74,7 +76,7 @@ def create_db_table(db_name_params):
         "`province` VARCHAR(5) NULL," \
         "`city` VARCHAR(5) NULL," \
         "`location` VARCHAR(20) NULL," \
-        "`description` VARCHAR(50) NULL," \
+        "`description` VARCHAR(100) NULL," \
         "`url` VARCHAR(100) NULL," \
         "`profile_image_url` VARCHAR(120) NULL," \
         "`profile_url` VARCHAR(45) NULL," \
@@ -91,6 +93,7 @@ def create_db_table(db_name_params):
         "`status_source` VARCHAR(20) NULL,PRIMARY KEY (`uid`)" \
         ");"
     cur.execute(sql_create_table)
+    db.commit()
 
     cur.close()
     db.close()
@@ -214,40 +217,21 @@ def write_all_person_info_in_mysql(db_name_params):
                     status_source = handle_json_file['users'][user_num]['status']['source']
 
                     # 将提取的信息写入数据库
-                    cur.execute(
-                        "UPDATE " + DB_NAME + ".peopleiofo "
-                        "SET name = '" + name + "', "
-                        "SET province = '" + province + "', "
-                        "SET city = '" + city + "', "
-                        "SET location = '" + location + "', "
-                        "SET description = '" + description + "', "
-                        "SET url = '" + url + "', "
-                        "SET profile_image_url = '" + profile_image_url + "', "
-                        "SET profile_url = '" + profile_url + "', "
-                        "SET domain = '" + domain + "', "
-                        "SET gender = '" + gender + "', "
-                        "SET followers_count = '" + followers_count + "', "                            
-                        "SET friends_count = '" + friends_count + "', "                             
-                        "SET statuses_count = '" + statuses_count + "', " 
-                        "SET video_status_count = '" + video_status_count + "', "                    
-                        "SET favourites_count = '" + favourites_count + "', "                    
-                        "SET created_at = '" + created_at + "', "                                          
-                        "SET verified = '" + verified + "', " 
-                        "SET verified = '" + status_source + "' "                                 
-                        "WHERE uid = '" + uid + "'")
+                    sql_write = "UPDATE " + db_name_params + ".peopleinfo SET name = '" + name + "', SET province = '" + str(province) + "', SET city = '" + str(city) + "', SET location = '" + location + "', SET description = '" + description + "', SET url = '" + url + "', SET profile_image_url = '" + profile_image_url + "', SET profile_url = '" + profile_url + "', SET domain = '" + domain + "', SET gender = '" + gender + "', SET followers_count = '" + str(followers_count) + "', SET friends_count = '" + str(friends_count) + "', SET statuses_count = '" + str(statuses_count) + "', SET video_status_count = '" + str(video_status_count) + "', SET favourites_count = '" + str(favourites_count) + "', SET created_at = '" + created_at + "', SET verified = '" + str(verified) + "', SET verified = '" + status_source + "' WHERE uid = '" + str(uid) + "';"
+                    cur.execute(sql_write)
+                    db.commit()
 
                     user_num = user_num + 1
 
-                    if uid not in person_writed_list:
-                        person_writed_list.append(uid)
+                    if str(uid) not in person_writed_list:
+                        person_writed_list.append(str(uid))
 
                 # 写入此好友互关的好友数
                 if level_local == 2:
                     total_number = handle_json_file['total_number']
                     cur.execute(
-                        "UPDATE " + DB_NAME + ".peopleiofo "
-                        "SET total_number = '" + total_number + "' " 
-                        "WHERE uid = '" + file_name[9:-5] + "'")
+                        "UPDATE " + db_name_params + ".peopleinfo SET total_number = '" + str(total_number) + "' WHERE uid = '" + file_name[9:-5] + "';")
+                    db.commit()
 
             one_json_file.close()
 
@@ -266,6 +250,8 @@ if __name__ == '__main__':
     judge_and_create_db(DB_NAME)
     create_db_table(DB_NAME)
 
+    print('Analysizing, wait...')
+
     """
     对数据处理
     """
@@ -276,24 +262,33 @@ if __name__ == '__main__':
     将每个好友的好友信息列表取出放进一个列表
     """
     friends_friendinfo_dict_values_list = []
-    for value in friends_friendinfo_dict.values():  # 遍历字典中的值（列表）
+    for value in friends_friendinfo_dict.values():  # 遍历字典中的值（多个列表）
         friends_friendinfo_dict_values_list.append(value)
 
     """
-    遍历上面的列表，所有好友信息列表变成元组，然后取交集。结果减去自己和自己的好友（一度好友）即是除度为 1 的二度好友
+    每个好友信息列表逐个取交集（两两取交集）。结果减去自己和自己的好友（一度好友）即是除度为 1 的二度好友
     """
-    result = set(friends_friendinfo_dict_values_list[0])
-    for data in friends_friendinfo_dict_values_list[1:]:
-        result = result & set(data)
-
-    two_level_useful_friends_list = list(result)
-
     file_list = os.listdir('./temp/1')
     my_uid = file_list[0][0:10]  # 文件夹 1 下的 json 文件名
+    two_level_useful_friends_list = []
+
+    for person in my_friendinfo_dict[my_uid][0:-2]:
+        count = 1
+        for temp_person in my_friendinfo_dict[my_uid][count:]:
+            temp_set = set(
+                friends_friendinfo_dict[person]) & set(
+                friends_friendinfo_dict[temp_person])
+            for item in list(temp_set):
+                two_level_useful_friends_list.append(item)
+
+    # 用元组去掉重复的
+    list(set(two_level_useful_friends_list))
     two_level_useful_friends_list.remove(my_uid)
 
-    for data in my_friendinfo_dict[my_uid]:
-        two_level_useful_friends_list.remove(data)
+    # 注意，如果某个一度好友与自己的朋友圈无任何关系，那么他就已经不在其中，不需要再移出一次
+    for item in my_friendinfo_dict[my_uid]:
+        if item in two_level_useful_friends_list:
+            two_level_useful_friends_list.remove(item)
 
     """
     连接进入数据库
@@ -314,13 +309,18 @@ if __name__ == '__main__':
     """
     cur.execute('USE ' + DB_NAME + ';')
 
+    uid_saved = []
+
     for item in my_friendinfo_dict[my_uid]:
-        cur.execute("INSERT INTO " + DB_NAME +
-                    ".peopleiofo (uid) VALUES ('" + item + "');")
+        cur.execute("INSERT INTO " + DB_NAME + ".peopleinfo (uid) VALUES ('" + item + "');")
+        db.commit()
+        uid_saved.append(item)
     for data in friends_friendinfo_dict:
         for item in friends_friendinfo_dict[data]:
-            cur.execute("INSERT INTO " + DB_NAME +
-                        ".peopleiofo (uid) VALUES ('" + item + "');")
+            if item not in uid_saved:
+                cur.execute("INSERT INTO " + DB_NAME + ".peopleinfo (uid) VALUES ('" + item + "');")
+                db.commit()
+                uid_saved.append(item)
 
     """
     计算每个一度好友 connect_to_my_friends 写入数据库
@@ -333,13 +333,8 @@ if __name__ == '__main__':
         temp_content = ", ".join(list(connect_to_my_friends))
 
         cur.execute(
-            "UPDATE " +
-            DB_NAME +
-            ".peopleiofo SET connect_to_my_friends = '" +
-            temp_content +
-            "' WHERE uid = '" +
-            data +
-            "'")
+            "UPDATE " + DB_NAME + ".peopleinfo SET connect_to_my_friends = '" + temp_content + "' WHERE uid = '" + data + "';")
+        db.commit()
         del temp_content
 
     """
@@ -359,13 +354,8 @@ if __name__ == '__main__':
             connect_to_two_level_friends)
 
         cur.execute(
-            "UPDATE " +
-            DB_NAME +
-            ".peopleiofo SET connect_to_two_level_friends = '" +
-            temp_content +
-            "' WHERE uid = '" +
-            data +
-            "'")
+            "UPDATE " + DB_NAME + ".peopleinfo SET connect_to_two_level_friends = '" + temp_content + "' WHERE uid = '" + data + "';")
+        db.commit()
         del temp_content
 
     """
@@ -384,21 +374,11 @@ if __name__ == '__main__':
             if two_level_friends_inter_have:
                 temp_content = ", ".join(list(two_level_friends_inter_have))
                 cur.execute(
-                    "UPDATE " +
-                    DB_NAME +
-                    ".peopleiofo SET maybe_connect_to_friends = '" +
-                    temp_content +
-                    "' WHERE uid = '" +
-                    person +
-                    "'")
+                    "UPDATE " + DB_NAME + ".peopleinfo SET maybe_connect_to_friends = '" + temp_content + "' WHERE uid = '" + person + "';")
+                db.commit()
                 cur.execute(
-                    "UPDATE " +
-                    DB_NAME +
-                    ".peopleiofo SET maybe_connect_to_friends = '" +
-                    temp_content +
-                    "' WHERE uid = '" +
-                    temp_person +
-                    "'")
+                    "UPDATE " + DB_NAME + ".peopleinfo SET maybe_connect_to_friends = '" + temp_content + "' WHERE uid = '" + temp_person + "';")
+                db.commit()
                 del temp_content
 
             count = count + 1
