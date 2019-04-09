@@ -9,10 +9,10 @@ This is a version info module.
 
 def print_version_info():
     print('###################################################################')
-    print('Title: ' + 'weibo friends analysis')
+    print('Title: ' + 'WFACat: weibo friends deep analysis')
     print('Description: ' + 'Python friends\' network analysis for every one.')
     print('URL: ' + 'https://github.com/Marlous/WFACat')
-    print('Version: ' + 'v0.1')
+    print('Version: ' + 'v1.0')
     print('Author: ' + 'Marlous')
     print('Author E-mail: ' + 'Goonecat@foxmail.com')
     print('License: ' + 'MIT License')
