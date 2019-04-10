@@ -47,7 +47,7 @@ def judge_and_create_db(db_name_params):
             exit('Noting occured!')
 
     else:
-        cur_try.execute('create database ' + db_name_params + ' CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_cis;')
+        cur_try.execute('create database ' + db_name_params + ' CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
         print('%s database created success!' % db_name_params)
 
     cur_try.close()
@@ -79,21 +79,21 @@ def create_db_table(db_name_params):
         "`province` VARCHAR(5) NULL," \
         "`city` VARCHAR(5) NULL," \
         "`location` VARCHAR(20) NULL," \
-        "`description` VARCHAR(100) NULL," \
+        "`description` VARCHAR(1000) NULL," \
         "`url` VARCHAR(100) NULL," \
         "`profile_image_url` VARCHAR(120) NULL," \
         "`profile_url` VARCHAR(45) NULL," \
         "`domain` VARCHAR(45) NULL," \
         "`gender` VARCHAR(1) NULL," \
-        "`followers_count` VARCHAR(45) NULL," \
-        "`friends_count` VARCHAR(45) NULL," \
-        "`statuses_count` VARCHAR(10) NULL," \
-        "`video_status_count` VARCHAR(10) NULL," \
-        "`favourites_count` VARCHAR(10) NULL," \
+        "`followers_count` INT NULL," \
+        "`friends_count` INT NULL," \
+        "`statuses_count` INT NULL," \
+        "`video_status_count` INT NULL," \
+        "`favourites_count` INT NULL," \
         "`created_at` VARCHAR(45) NULL," \
         "`verified` VARCHAR(10) NULL," \
-        "`total_number` VARCHAR(10) NULL," \
-        "`status_source` VARCHAR(20) NULL,PRIMARY KEY (`uid`)" \
+        "`total_number` INT NULL," \
+        "`status_source` VARCHAR(50) NULL,PRIMARY KEY (`uid`)" \
         ");"
     cur.execute(sql_create_table)
     db.commit()
@@ -224,34 +224,60 @@ def write_all_person_info_in_mysql(db_name_params):
                     favourites_count = handle_json_file['users'][user_num]['favourites_count']
                     created_at = handle_json_file['users'][user_num]['created_at']
                     verified = handle_json_file['users'][user_num]['verified']
-                    temp_status_source = handle_json_file['users'][user_num]['status']['source']
-                    # 正则表达式提取出 <a> 标签中的手机客户端型号
-                    pre = re.compile(">(.*?)<")
-                    status_source = pre.findall(temp_status_source)[0]
 
-                    # 将提取的信息写入数据库
-                    sql_write = "UPDATE " + db_name_params + ".peopleinfo SET name = '" + name + \
+                    """
+                    存入 status_source 属性值
+                    判断 status 这个字段书否存在（debug 时显示不存在），说明可能不存在
+                    """
+                    if 'status' in handle_json_file['users'][user_num]:
+                        if 'source' in handle_json_file['users'][user_num]['status']:
+                            temp_status_source = handle_json_file['users'][user_num]['status']['source']
+                            # 正则表达式提取出 <a> 标签中的手机客户端型号
+                            ######
+                            print('1 temp_status_source :' + str(temp_status_source))
+                            pattern_html = re.compile(">(.*?)<")
+                            pattern_txt = re.compile("[a-zA-Z0-9\u4e00-\u9fa5]+")
+                            # 先把 json 中 html 标签中的内容匹配出来，放进 temp_two_status_source（是一个列表）
+                            temp_two_status_source = pattern_html.findall(str(temp_status_source))
+                            #######
+                            print('2 temp_two_status_source :' + str(temp_two_status_source))
+                            if list(temp_two_status_source):
+                                # json 中取出的匹配出变成列表。此处（不为空的话）将其再次匹配，只要数字、字母、中文。过滤掉特殊字符
+                                temp_three_status_source = temp_two_status_source[0]
+                                # 将再次匹配得到的列表连接起来，变成字符串
+                                status_source = " ".join(pattern_txt.findall(str(temp_three_status_source)))
+                                #######
+                                print(str(status_source))
+                                cur.execute("UPDATE " + db_name_params + ".peopleinfo SET status_source = '" +
+                                            str(status_source) + "' WHERE uid = '" + str(uid) + "';")
+
+                    """
+                    存入 verified 属性值
+                    """
+                    if str(verified) != 'False':
+                        cur.execute("UPDATE " + db_name_params + ".peopleinfo SET verified = '" + str(verified) +
+                                    "' WHERE uid = '" + str(uid) + "';")
+
+                    """
+                    将提取的信息剩下的属性值写入数据库
+                    """
+                    sql_write = "UPDATE " + db_name_params + ".peopleinfo SET name = '" + str(name) + \
                                 "', province = '" + str(province) + \
                                 "', city = '" + str(city) + \
-                                "', location = '" + location + \
-                                "', description = '" + description + \
-                                "', url = '" + url + \
-                                "', profile_image_url = '" + profile_image_url + \
-                                "', profile_url = '" + profile_url + \
-                                "', domain = '" + domain + \
-                                "', gender = '" + gender + \
+                                "', location = '" + str(location) + \
+                                "', description = \"" + str(description) + \
+                                "\", url = '" + str(url) + \
+                                "', profile_image_url = '" + str(profile_image_url) + \
+                                "', profile_url = '" + str(profile_url) + \
+                                "', domain = '" + str(domain) + \
+                                "', gender = '" + str(gender) + \
                                 "', followers_count = '" + str(followers_count) + \
                                 "', friends_count = '" + str(friends_count) + \
                                 "', statuses_count = '" + str(statuses_count) + \
                                 "', video_status_count = '" + str(video_status_count) + \
                                 "', favourites_count = '" + str(favourites_count) + \
-                                "', created_at = '" + created_at + \
-                                "', status_source = '" + status_source + \
+                                "', created_at = '" + str(created_at) + \
                                 "' WHERE uid = '" + str(uid) + "';"
-
-                    if str(verified) != 'False':
-                        cur.execute("UPDATE " + db_name_params + ".peopleinfo SET verified = '" + str(verified) +
-                                    "' WHERE uid = '" + str(uid) + "';")
 
                     cur.execute(sql_write)
                     db.commit()
@@ -261,7 +287,9 @@ def write_all_person_info_in_mysql(db_name_params):
                     if str(uid) not in person_writed_list:
                         person_writed_list.append(str(uid))
 
-                # 写入此好友互关的好友数
+                """
+                写入此好友互关的好友数
+                """
                 if level_local == 2:
                     total_number = handle_json_file['total_number']
                     cur.execute("UPDATE " + db_name_params + ".peopleinfo SET total_number = '" + str(total_number) +
@@ -350,6 +378,8 @@ if __name__ == '__main__':
     cur.execute('USE ' + DB_NAME + ';')
 
     uid_saved = []
+    # 不记录自己
+    uid_saved.append(my_uid)
 
     for item in my_friendinfo_dict[my_uid]:
         # 一度人脉，标记为 1
