@@ -7,11 +7,11 @@ This is a analysis store data module.
 """
 
 
+import settings
+
 import csv
 import json
 import os
-
-import settings
 
 
 def save_all_person_info_json_file_as_csv():
@@ -57,13 +57,9 @@ def save_all_person_info_json_file_as_csv():
                         edge_one_data.append(level_local)
                         edge_csv_file.writerow(edge_one_data)
 
-                    print('edge: ' +
-                          file_list[json_file_num][0:10] +
-                          ' -> ' +
-                          str(user_uid) +
-                          '( ' +
-                          user_name +
-                          ' )')
+                    print('edge: ' + file_list[json_file_num][0:10] +
+                          ' -> ' + str(user_uid) +
+                          '( ' + user_name + ' )')
 
             one_json_file.close()
 

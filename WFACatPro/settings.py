@@ -202,6 +202,7 @@ if __name__ == '__main__':
 
         print_config_info()
         exit()
+
     elif values == 'N':
         print('Settings no changed !')
         exit()

@@ -8,9 +8,12 @@ This is a analysis to mysql module.
 
 
 import settings
+
 import pymysql
 import os
 import json
+import re
+import warnings
 
 
 def judge_and_create_db(db_name_params):
@@ -44,7 +47,7 @@ def judge_and_create_db(db_name_params):
             exit('Noting occured!')
 
     else:
-        cur_try.execute('create database ' + db_name_params + ';')
+        cur_try.execute('create database ' + db_name_params + ' CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_cis;')
         print('%s database created success!' % db_name_params)
 
     cur_try.close()
@@ -70,9 +73,9 @@ def create_db_table(db_name_params):
     sql_create_table = "CREATE TABLE " + "`" + db_name_params + "`.`peopleinfo` (" \
         "`uid` CHAR(10) NOT NULL," \
         "`name` VARCHAR(45) NULL," \
+        "`rel_me` VARCHAR(5) NULL," \
         "`connect_to_my_friends` VARCHAR(5000) NULL," \
         "`connect_to_two_level_friends` VARCHAR(5000) NULL," \
-        "`maybe_connect_to_friends` VARCHAR(5000) NULL," \
         "`province` VARCHAR(5) NULL," \
         "`city` VARCHAR(5) NULL," \
         "`location` VARCHAR(20) NULL," \
@@ -177,19 +180,26 @@ def write_all_person_info_in_mysql(db_name_params):
     my_friends_json_name = os.listdir('./temp/1')[0][0:10]
     person_writed_list.append(my_friends_json_name)
 
-    # 遍历 n 度（n 个）人脉文件夹中所有。此处只遍历 2 次，遍历文件夹 1、2
+    """
+    遍历 n 度（n 个）人脉文件夹中所有。此处只遍历 2 次，遍历文件夹 1、2
+    """
     level_local = 1
 
     while level_local <= 2:
         file_path = './temp/' + str(level_local)
         file_list = os.listdir(file_path)  # 第 n 度文件夹路径
 
-        # 遍历 n 度文件夹下的 json 文件
+        """
+        遍历 n 度文件夹下的 json 文件
+        """
         for json_file_num in range(0, len(file_list)):
             file_name = file_path + '/' + \
                 file_list[json_file_num]  # 文件夹下的每一个 json 文件
 
-            with open(file_name, 'r', encoding='utf-8') as one_json_file:  # 提取遍历 json 中每个用户的 uid
+            """
+            提取遍历 json 中每个用户的 uid
+            """
+            with open(file_name, 'r', encoding='utf-8') as one_json_file:
                 # 将 json 文件内容转为字典，注意字典的索引可以是字符串或整数
                 handle_json_file = json.loads(one_json_file.read())
 
@@ -214,10 +224,35 @@ def write_all_person_info_in_mysql(db_name_params):
                     favourites_count = handle_json_file['users'][user_num]['favourites_count']
                     created_at = handle_json_file['users'][user_num]['created_at']
                     verified = handle_json_file['users'][user_num]['verified']
-                    status_source = handle_json_file['users'][user_num]['status']['source']
+                    temp_status_source = handle_json_file['users'][user_num]['status']['source']
+                    # 正则表达式提取出 <a> 标签中的手机客户端型号
+                    pre = re.compile(">(.*?)<")
+                    status_source = pre.findall(temp_status_source)[0]
 
                     # 将提取的信息写入数据库
-                    sql_write = "UPDATE " + db_name_params + ".peopleinfo SET name = '" + name + "', SET province = '" + str(province) + "', SET city = '" + str(city) + "', SET location = '" + location + "', SET description = '" + description + "', SET url = '" + url + "', SET profile_image_url = '" + profile_image_url + "', SET profile_url = '" + profile_url + "', SET domain = '" + domain + "', SET gender = '" + gender + "', SET followers_count = '" + str(followers_count) + "', SET friends_count = '" + str(friends_count) + "', SET statuses_count = '" + str(statuses_count) + "', SET video_status_count = '" + str(video_status_count) + "', SET favourites_count = '" + str(favourites_count) + "', SET created_at = '" + created_at + "', SET verified = '" + str(verified) + "', SET verified = '" + status_source + "' WHERE uid = '" + str(uid) + "';"
+                    sql_write = "UPDATE " + db_name_params + ".peopleinfo SET name = '" + name + \
+                                "', province = '" + str(province) + \
+                                "', city = '" + str(city) + \
+                                "', location = '" + location + \
+                                "', description = '" + description + \
+                                "', url = '" + url + \
+                                "', profile_image_url = '" + profile_image_url + \
+                                "', profile_url = '" + profile_url + \
+                                "', domain = '" + domain + \
+                                "', gender = '" + gender + \
+                                "', followers_count = '" + str(followers_count) + \
+                                "', friends_count = '" + str(friends_count) + \
+                                "', statuses_count = '" + str(statuses_count) + \
+                                "', video_status_count = '" + str(video_status_count) + \
+                                "', favourites_count = '" + str(favourites_count) + \
+                                "', created_at = '" + created_at + \
+                                "', status_source = '" + status_source + \
+                                "' WHERE uid = '" + str(uid) + "';"
+
+                    if str(verified) != 'False':
+                        cur.execute("UPDATE " + db_name_params + ".peopleinfo SET verified = '" + str(verified) +
+                                    "' WHERE uid = '" + str(uid) + "';")
+
                     cur.execute(sql_write)
                     db.commit()
 
@@ -229,8 +264,8 @@ def write_all_person_info_in_mysql(db_name_params):
                 # 写入此好友互关的好友数
                 if level_local == 2:
                     total_number = handle_json_file['total_number']
-                    cur.execute(
-                        "UPDATE " + db_name_params + ".peopleinfo SET total_number = '" + str(total_number) + "' WHERE uid = '" + file_name[9:-5] + "';")
+                    cur.execute("UPDATE " + db_name_params + ".peopleinfo SET total_number = '" + str(total_number) +
+                                "' WHERE uid = '" + file_name[9:-5] + "';")
                     db.commit()
 
             one_json_file.close()
@@ -242,6 +277,7 @@ def write_all_person_info_in_mysql(db_name_params):
 
 
 if __name__ == '__main__':
+    warnings.filterwarnings('ignore')
     print('= MySQL analysis =')
     print('Make sure mysql service started! Then input database name ~')
     DB_NAME = input(
@@ -253,8 +289,9 @@ if __name__ == '__main__':
     print('Analysizing, wait...')
 
     """
-    对数据处理
+    对数据处理，得到两个基本集合
     """
+    print('log: basic data...')
     my_friendinfo_dict = produce_my_friendinfo_dict()
     friends_friendinfo_dict = produce_friends_friendinfo_dict()
 
@@ -267,24 +304,25 @@ if __name__ == '__main__':
 
     """
     每个好友信息列表逐个取交集（两两取交集）。结果减去自己和自己的好友（一度好友）即是除度为 1 的二度好友
+    得到第三个基本集合
+    总算法复杂度（比较次数）为排列组合算出来的次数 C n 2 次，n 是一度好友数量
     """
+    print('log: two level friends...')
     file_list = os.listdir('./temp/1')
     my_uid = file_list[0][0:10]  # 文件夹 1 下的 json 文件名
-    two_level_useful_friends_list = []
+    temp_two_level_useful_friends_list = []
 
-    for person in my_friendinfo_dict[my_uid][0:-2]:
-        count = 1
+    count = 1
+    for person in my_friendinfo_dict[my_uid][0:-1]:
         for temp_person in my_friendinfo_dict[my_uid][count:]:
-            temp_set = set(
-                friends_friendinfo_dict[person]) & set(
-                friends_friendinfo_dict[temp_person])
+            temp_set = set(friends_friendinfo_dict[person]) & set(friends_friendinfo_dict[temp_person])
             for item in list(temp_set):
-                two_level_useful_friends_list.append(item)
+                temp_two_level_useful_friends_list.append(item)
+        count =count + 1
 
     # 用元组去掉重复的
-    list(set(two_level_useful_friends_list))
+    two_level_useful_friends_list = list(set(temp_two_level_useful_friends_list))
     two_level_useful_friends_list.remove(my_uid)
-
     # 注意，如果某个一度好友与自己的朋友圈无任何关系，那么他就已经不在其中，不需要再移出一次
     for item in my_friendinfo_dict[my_uid]:
         if item in two_level_useful_friends_list:
@@ -293,6 +331,7 @@ if __name__ == '__main__':
     """
     连接进入数据库
     """
+    print('log: connecting to mysql...')
     db = pymysql.connect(
         host=settings.DB_HOST,
         port=int(settings.DB_PORT),
@@ -305,26 +344,42 @@ if __name__ == '__main__':
     cur.execute('USE ' + DB_NAME + ';')
 
     """
-    # 写入每个好友（一度、二度）uid 信息
+    # 写入每个好友（一度、二度，全部）uid 信息
     """
+    print('log: every user uid to mysql, may be long time, wait...')
     cur.execute('USE ' + DB_NAME + ';')
 
     uid_saved = []
 
     for item in my_friendinfo_dict[my_uid]:
-        cur.execute("INSERT INTO " + DB_NAME + ".peopleinfo (uid) VALUES ('" + item + "');")
+        # 一度人脉，标记为 1
+        cur.execute("INSERT INTO " + DB_NAME +
+                    ".peopleinfo (uid, rel_me) VALUES ('" + item + "', '1');")
         db.commit()
         uid_saved.append(item)
+
     for data in friends_friendinfo_dict:
         for item in friends_friendinfo_dict[data]:
             if item not in uid_saved:
-                cur.execute("INSERT INTO " + DB_NAME + ".peopleinfo (uid) VALUES ('" + item + "');")
-                db.commit()
-                uid_saved.append(item)
+                if item in two_level_useful_friends_list:
+                    # 节点度不为 1 的二度人脉，标记为 2
+                    cur.execute("INSERT INTO " + DB_NAME +
+                                ".peopleinfo (uid, rel_me) VALUES ('" + item + "', '2');")
+                    db.commit()
+                    uid_saved.append(item)
+                else:
+                    # 节点度为 1 的二度人脉，标记为 2.1
+                    cur.execute("INSERT INTO " + DB_NAME +
+                                ".peopleinfo (uid, rel_me) VALUES ('" + item + "', '2.1');")
+                    db.commit()
+                    uid_saved.append(item)
+
 
     """
     计算每个一度好友 connect_to_my_friends 写入数据库
+    某个好友的好友信息列表与自己的信息列表取交集
     """
+    print('log: connect_to_my_friends...')
     for data in my_friendinfo_dict[my_uid]:
         # 好友的好友列表和我的好友列表取交集
         connect_to_my_friends = set(
@@ -333,13 +388,18 @@ if __name__ == '__main__':
         temp_content = ", ".join(list(connect_to_my_friends))
 
         cur.execute(
-            "UPDATE " + DB_NAME + ".peopleinfo SET connect_to_my_friends = '" + temp_content + "' WHERE uid = '" + data + "';")
+            "UPDATE " + DB_NAME +
+            ".peopleinfo SET connect_to_my_friends = '" + temp_content +
+            "' WHERE uid = '" + data + "';")
         db.commit()
         del temp_content
 
     """
     计算每个一度好友 connect_to_two_level_friends 写入数据库
+    某个好友信息列表与 two_level_useful_friends_list 集合取交集
+    two_level_useful_friends_list 是所有除去节点度为一的二度好友
     """
+    print('log: connect_to_two_level_friends...')
     # 初始化一个字典，记下每个一度好友的二度好友列表（除去节点的度为一的）
     friends_two_level_friendinfo_dict = {}
 
@@ -354,34 +414,52 @@ if __name__ == '__main__':
             connect_to_two_level_friends)
 
         cur.execute(
-            "UPDATE " + DB_NAME + ".peopleinfo SET connect_to_two_level_friends = '" + temp_content + "' WHERE uid = '" + data + "';")
+            "UPDATE " + DB_NAME +
+            ".peopleinfo SET connect_to_two_level_friends = '" + temp_content +
+            "' WHERE uid = '" + data + "';")
         db.commit()
         del temp_content
 
     """
-    计算每个一度好友 maybe_connect_to_friends，写入数据库
+    计算每个一度好友可以间接认识哪些其它一度好友，为其建立一张表，表属性分别是可以间接认识的人、通过谁，写入数据库
     每个好友的二度人脉好友信息列表（通过字典查到）与其它好友的二度人脉好友信息列表取交集
     集合不为空，表示可以通过集合里的人建立联系。
-    总算法复杂度（比较次数）为排列组合算出来的次数 C n 2 次
+    总算法复杂度（比较次数）为排列组合算出来的次数 C n 2 次，n 是一度好友数量
     """
-    for person in my_friendinfo_dict[my_uid][0:-2]:
-        count = 1
+    print('log: maybe_connect_to_friends...')
+    count = 1
+    for person in my_friendinfo_dict[my_uid][0:-1]:
         for temp_person in my_friendinfo_dict[my_uid][count:]:
             two_level_friends_inter_have = set(
                 friends_two_level_friendinfo_dict[person]) & set(
                 friends_two_level_friendinfo_dict[temp_person])
 
             if two_level_friends_inter_have:
-                temp_content = ", ".join(list(two_level_friends_inter_have))
                 cur.execute(
-                    "UPDATE " + DB_NAME + ".peopleinfo SET maybe_connect_to_friends = '" + temp_content + "' WHERE uid = '" + person + "';")
+                    "CREATE TABLE IF NOT EXISTS " + DB_NAME +
+                    ".u" + person +
+                    "( uid CHAR(10) PRIMARY KEY, interfriends VARCHAR(5000)" + ")"
+                )
                 db.commit()
                 cur.execute(
-                    "UPDATE " + DB_NAME + ".peopleinfo SET maybe_connect_to_friends = '" + temp_content + "' WHERE uid = '" + temp_person + "';")
+                    "CREATE TABLE IF NOT EXISTS " + DB_NAME +
+                    ".u" + temp_person +
+                    "( uid CHAR(10) PRIMARY KEY, interfriends VARCHAR(5000)" + ")"
+                )
+                db.commit()
+
+                temp_content = ", ".join(list(two_level_friends_inter_have))
+                cur.execute("INSERT INTO " + DB_NAME +
+                            ".u" + person +
+                            " VALUES ('" + temp_person + "', '" + temp_content + "');")
+                db.commit()
+                cur.execute("INSERT INTO " + DB_NAME +
+                            ".u" + temp_person +
+                            " VALUES ('" + person + "', '" + temp_content + "');")
                 db.commit()
                 del temp_content
 
-            count = count + 1
+        count = count + 1
 
     del my_friendinfo_dict
     del friends_friendinfo_dict
@@ -390,6 +468,7 @@ if __name__ == '__main__':
     db.close()
 
     """
-    写入所有人的详细信息，除了上面计算的三个属性（已经写入）
+    写入所有人的详细信息，除了上面计算的三个属性（因为已经写入）
     """
+    print('log: every user info detail, may be long time, wait...')
     write_all_person_info_in_mysql(DB_NAME)

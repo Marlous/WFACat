@@ -12,10 +12,10 @@ import os
 import shutil
 import random
 import time
+import requests
 import urllib
 from urllib.parse import urlparse
 
-import requests
 import settings
 
 

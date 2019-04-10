@@ -7,16 +7,19 @@ This is a main module.
 """
 
 
+import version
+
 import json
 import os
-
-import version
 
 
 if __name__ == '__main__':
     version.print_version_info()
     print('You could use \'help\' command to get help!')
     print('If appear Python ERROR, please config correct configuration!')
+    print('Warning! If you want store data to MySQL, you must set MySQL default charset is utf8mb4 first!!!')
+    print('Change MySQL chartset: find my.ini, change [mysql] and [mysqld], then change to utf8mb4, restart service.')
+    print('')
 
     """
     第一次运行没有配置文件，会自动初始化一个 config.json
@@ -31,7 +34,7 @@ if __name__ == '__main__':
             db_port_local = '3306'
             db_user_local = 'root'
             db_user_password_local = '12345'
-            db_charset_local = 'utf8'
+            db_charset_local = 'utf8mb4'
 
             init_config_info = {
                 'PRIVACY_URL': privacy_url_local,
@@ -43,6 +46,7 @@ if __name__ == '__main__':
                 'DB_USER': db_user_local,
                 'DB_USER_PASSWORD': db_user_password_local,
                 'DB_CHARSET': db_charset_local}
+
             init_config_info_handle = json.dumps(init_config_info)
             init_config_info_json_file.write(init_config_info_handle)
 
@@ -73,7 +77,13 @@ if __name__ == '__main__':
             os.system('settings.py')
         elif cmd == 'get':
             os.system('get_data.py')
-        elif cmd == 'store':
+        elif cmd == 'tocsv':
             os.system('analysis_to_csv.py')
+        elif cmd == 'tomysql':
+            os.system('analysis_to_mysql.py')
+        elif cmd == 'detail':
+            os.system('mysql_query.py')
+        elif cmd == 'tool':
+            os.system('tools.py')
         elif cmd == 'quit':
             exit('Bye ~')
