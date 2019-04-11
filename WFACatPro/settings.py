@@ -46,7 +46,7 @@ global DB_CHARSET
 
 
 def print_config_info():
-    with open('./config.json', 'r', encoding='utf-8') as config_file:
+    with open('./WFACat_data/config.json', 'r', encoding='utf-8') as config_file:
         config_file_handle = json.loads(config_file.read())
         privacy_url_local = config_file_handle['PRIVACY_URL']
         person_name_local = config_file_handle['PERSON_NAME']
@@ -71,15 +71,15 @@ def print_config_info():
 
 
 def write_config_file_privacy_url(privacy_url_params):
-    if os.path.exists('./config.json'):
-        config_file_in = open('./config.json', 'r', encoding='utf-8')
+    if os.path.isfile('./WFACat_data/config.json'):
+        config_file_in = open('./WFACat_data/config.json', 'r', encoding='utf-8')
         config_file_handle_one = json.loads(config_file_in.read())
         config_file_in.close()
 
         config_file_handle_one['PRIVACY_URL'] = privacy_url_params
         config_file_handle_two = json.dumps(config_file_handle_one)
 
-        config_file_out = open('./config.json', 'w', encoding='utf-8')
+        config_file_out = open('./WFACat_data/config.json', 'w', encoding='utf-8')
         config_file_out.write(config_file_handle_two)
         config_file_out.close()
     else:
@@ -87,15 +87,15 @@ def write_config_file_privacy_url(privacy_url_params):
 
 
 def write_config_file_person_name(person_name_params):
-    if os.path.exists('./config.json'):
-        config_file_in = open('./config.json', 'r', encoding='utf-8')
+    if os.path.isfile('./WFACat_data/config.json'):
+        config_file_in = open('./WFACat_data/config.json', 'r', encoding='utf-8')
         config_file_handle_one = json.loads(config_file_in.read())
         config_file_in.close()
 
         config_file_handle_one['PERSON_NAME'] = person_name_params
         config_file_handle_two = json.dumps(config_file_handle_one)
 
-        config_file_out = open('./config.json', 'w', encoding='utf-8')
+        config_file_out = open('./WFACat_data/config.json', 'w', encoding='utf-8')
         config_file_out.write(config_file_handle_two)
         config_file_out.close()
     else:
@@ -103,8 +103,8 @@ def write_config_file_person_name(person_name_params):
 
 
 def write_config_file_db_info(db_host_params, db_port_params, db_user_params, db_charset_params):
-    if os.path.exists('./config.json'):
-        config_file_in = open('./config.json', 'r', encoding='utf-8')
+    if os.path.isfile('./WFACat_data/config.json'):
+        config_file_in = open('./WFACat_data/config.json', 'r', encoding='utf-8')
         config_file_handle_one = json.loads(config_file_in.read())
         config_file_in.close()
 
@@ -114,7 +114,7 @@ def write_config_file_db_info(db_host_params, db_port_params, db_user_params, db
         config_file_handle_one['DB_CHARSET'] = db_charset_params
         config_file_handle_two = json.dumps(config_file_handle_one)
 
-        config_file_out = open('./config.json', 'w', encoding='utf-8')
+        config_file_out = open('./WFACat_data/config.json', 'w', encoding='utf-8')
         config_file_out.write(config_file_handle_two)
         config_file_out.close()
     else:
@@ -122,15 +122,15 @@ def write_config_file_db_info(db_host_params, db_port_params, db_user_params, db
 
 
 def write_config_file_db_passwd(db_user_password_params):
-    if os.path.exists('./config.json'):
-        config_file_in = open('./config.json', 'r', encoding='utf-8')
+    if os.path.isfile('./WFACat_data/config.json'):
+        config_file_in = open('./WFACat_data/config.json', 'r', encoding='utf-8')
         config_file_handle_one = json.loads(config_file_in.read())
         config_file_in.close()
 
         config_file_handle_one['DB_USER_PASSWORD'] = db_user_password_params
         config_file_handle_two = json.dumps(config_file_handle_one)
 
-        config_file_out = open('./config.json', 'w', encoding='utf-8')
+        config_file_out = open('./WFACat_data/config.json', 'w', encoding='utf-8')
         config_file_out.write(config_file_handle_two)
         config_file_out.close()
     else:
@@ -140,8 +140,8 @@ def write_config_file_db_passwd(db_user_password_params):
 """
 读取配置文件
 """
-if os.path.exists('config.json'):
-    with open('config.json', 'r', encoding='utf-8') as config_file:
+if os.path.isfile('./WFACat_data/config.json'):
+    with open('./WFACat_data/config.json', 'r', encoding='utf-8') as config_file:
         config_file_handle = json.loads(config_file.read())
         PRIVACY_URL = config_file_handle['PRIVACY_URL']
         PERSON_NAME = config_file_handle['PERSON_NAME']

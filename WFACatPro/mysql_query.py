@@ -7,4 +7,4 @@ This is a mysql query module.
 """
 
 
-import pymysqls
+import pymysql

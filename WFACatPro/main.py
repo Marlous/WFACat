@@ -21,11 +21,15 @@ if __name__ == '__main__':
     print('Change MySQL chartset: find my.ini, change [mysql] and [mysqld], then change to utf8mb4, restart service.')
     print('')
 
+    # 创建存放数据的文件夹
+    if not os.path.exists('./WFACat_data'):
+        os.makedirs('./WFACat_data')
+
     """
     第一次运行没有配置文件，会自动初始化一个 config.json
     """
-    if not os.path.exists('config.json'):
-        with open('config.json', 'w', encoding='utf-8') as init_config_info_json_file:
+    if not os.path.isfile('./WFACat_data/config.json'):
+        with open('./WFACat_data/config.json', 'w', encoding='utf-8') as init_config_info_json_file:
             privacy_url_local = ' '
             person_name_local = ' '
             each_follower_count_local = 200
@@ -53,7 +57,7 @@ if __name__ == '__main__':
     """
     读取配置
     """
-    with open('config.json', 'r', encoding='utf-8') as config_file:
+    with open('./WFACat_data/config.json', 'r', encoding='utf-8') as config_file:
         config_file_handle = json.loads(config_file.read())
         PRIVACY_URL = config_file_handle['PRIVACY_URL']
         PERSON_NAME = config_file_handle['PERSON_NAME']
