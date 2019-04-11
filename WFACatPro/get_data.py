@@ -146,8 +146,8 @@ def download_over_one_level_person_info_json_file():
 
                     # 判断是否已下载过该用户好友 json 文件
                     if user_uid not in uid_friends_info_json_file_downloaded:
-                        time.sleep(random.randint(1, 10))  # 随机暂停几秒，数字越大越安全，但时间可能很长
-                        time.sleep(random.randint(5, 10))
+                        time.sleep(random.randint(1, 2))  # 随机暂停几秒，数字越大越安全，但时间可能很长
+                        time.sleep(random.randint(1, 5))
 
                         # 拼好将要下载的某用户好友信息文件要命名的名字（该用户 uid.json）
                         next_file_name = next_file_path + \

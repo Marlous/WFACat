@@ -67,7 +67,7 @@ def save_all_person_info_json_file_as_csv():
 
     print('')
     print('Congratulations! All data analysis completed!')
-    print('node.csv and edge.csv you had now ~ You can find it in ./data')
+    print('node.csv and edge.csv you had now ~ You can find it in ./WFACat_data/data')
     print('Thanks!')
 
 

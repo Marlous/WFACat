@@ -23,7 +23,9 @@ global PRIVACY_URL
 global PERSON_NAME
 
 """
-设置要获取的最大相互关注好友数量。根据新浪官方开发者手册：官方默认为 50，返回 30% 的互关好友，上限为 500。
+设置要获取的最大相互关注好友数量。
+单页只能获得 200，（json 文件），可以通过构造参数的页数来请求全部的
+如果某个好友（研究对象的好友）的互关数超过 200 人，那么会导致此好友的相关分析信息可能会不准确！
 不建议修改。
 """
 global EACH_FOLLOWER_COUNT
@@ -179,7 +181,7 @@ if __name__ == '__main__':
             write_config_file_person_name(person_name_local)
 
         select_three = input(
-            'Setting DB host, port, user, charset (Default: localhost, 3306, root, utf8).[Y/N]')
+            'Setting DB host, port, user, charset (Default: localhost, 3306, root, utf8mb4).[Y/N]')
         while select_three not in ('Y', 'N'):
             select_three = input('Please enter Y or N:')
         if select_three == 'Y':

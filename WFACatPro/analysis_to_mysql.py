@@ -233,21 +233,16 @@ def write_all_person_info_in_mysql(db_name_params):
                         if 'source' in handle_json_file['users'][user_num]['status']:
                             temp_status_source = handle_json_file['users'][user_num]['status']['source']
                             # 正则表达式提取出 <a> 标签中的手机客户端型号
-                            ######
-                            print('1 temp_status_source :' + str(temp_status_source))
                             pattern_html = re.compile(">(.*?)<")
                             pattern_txt = re.compile("[a-zA-Z0-9\u4e00-\u9fa5]+")
                             # 先把 json 中 html 标签中的内容匹配出来，放进 temp_two_status_source（是一个列表）
                             temp_two_status_source = pattern_html.findall(str(temp_status_source))
-                            #######
-                            print('2 temp_two_status_source :' + str(temp_two_status_source))
+
                             if list(temp_two_status_source):
                                 # json 中取出的匹配出变成列表。此处（不为空的话）将其再次匹配，只要数字、字母、中文。过滤掉特殊字符
                                 temp_three_status_source = temp_two_status_source[0]
                                 # 将再次匹配得到的列表连接起来，变成字符串
                                 status_source = " ".join(pattern_txt.findall(str(temp_three_status_source)))
-                                #######
-                                print(str(status_source))
                                 cur.execute("UPDATE " + db_name_params + ".peopleinfo SET status_source = '" +
                                             str(status_source) + "' WHERE uid = '" + str(uid) + "';")
 
@@ -293,7 +288,7 @@ def write_all_person_info_in_mysql(db_name_params):
                 if level_local == 2:
                     total_number = handle_json_file['total_number']
                     cur.execute("UPDATE " + db_name_params + ".peopleinfo SET total_number = '" + str(total_number) +
-                                "' WHERE uid = '" + file_name[9:-5] + "';")
+                                "' WHERE uid = '" + file_name[20:-5] + "';")
                     db.commit()
 
             one_json_file.close()
@@ -409,6 +404,10 @@ if __name__ == '__main__':
     计算每个一度好友 connect_to_my_friends 写入数据库
     某个好友的好友信息列表与自己的信息列表取交集
     """
+    ###
+    print('my_friendinfo_dict[my_uid]: ' + str(my_friendinfo_dict[my_uid]))
+    ###
+
     print('log: connect_to_my_friends...')
     for data in my_friendinfo_dict[my_uid]:
         # 好友的好友列表和我的好友列表取交集
