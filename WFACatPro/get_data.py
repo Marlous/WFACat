@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-WFACat Pro.get_data
+WFACatPro.get_data
 ~~~~~~~~~~~~~~~~~~~
 This is a get_data module.
 """
@@ -12,10 +12,10 @@ import os
 import shutil
 import random
 import time
+import requests
 import urllib
 from urllib.parse import urlparse
 
-import requests
 import settings
 
 
@@ -63,14 +63,14 @@ def get_person_uid(person_name_params):
     else:
         person_info_json_file.raise_for_status()
 
-    with open('./temp/person.json', 'wb') as person_json_file_saved:  # 保存下载的文件到硬盘
+    with open('./WFACat_data/temp/person.json', 'wb') as person_json_file_saved:  # 保存下载的文件到硬盘
         person_json_file_saved.write(person_info_json_file.content)
         person_json_file_saved.close()
 
     """
     提取 person 的 uid
     """
-    with open('./temp/person.json', 'r', encoding='utf-8') as person_json_file:
+    with open('./WFACat_data/temp/person.json', 'r', encoding='utf-8') as person_json_file:
         json_file_trans = json.loads(
             person_json_file.read())  # 将 json 文件内容转为字典
         # 注意字典的索引可以是字符串或整数
@@ -113,8 +113,8 @@ def download_over_one_level_person_info_json_file():
     """
     :return: 无返回值。下载 n 度人脉全部用户的好友信息的 json 文件（默认一度人脉的信息文件已下载好）
     """
-    if not os.path.exists('./temp/1'):
-        print('ERROR! ./temp/1 not exists!')
+    if not os.path.exists('./WFACat_data/temp/1'):
+        print('ERROR! ./WFACat_data/temp/1 not exists!')
 
     # 初始化人脉深度为 1，因为获得第一层人脉信息（以自己为种子）是预先下载，不使用此下载函数下载
     level_local = 1
@@ -123,11 +123,11 @@ def download_over_one_level_person_info_json_file():
     遍历 n 个人脉文件夹（数字为几的文件夹存放几度人脉的 json 文件）
     """
     while level_local < settings.SET_LEVEL:
-        file_path = './temp/' + str(level_local)  # 是已存在的一度人脉文件夹 1
+        file_path = './WFACat_data/temp/' + str(level_local)  # 是已存在的一度人脉文件夹 1
         file_list = os.listdir(file_path)
 
         next_level = int(level_local) + 1  # 创建下一度人脉文件夹，从文件夹 2 开始
-        next_file_path = './temp/' + str(next_level)
+        next_file_path = './WFACat_data/temp/' + str(next_level)
         if not os.path.exists(next_file_path):
             os.makedirs(next_file_path)
 
@@ -146,8 +146,8 @@ def download_over_one_level_person_info_json_file():
 
                     # 判断是否已下载过该用户好友 json 文件
                     if user_uid not in uid_friends_info_json_file_downloaded:
-                        time.sleep(random.randint(1, 10))  # 随机暂停几秒，数字越大越安全，但时间可能很长
-                        time.sleep(random.randint(5, 10))
+                        time.sleep(random.randint(1, 2))  # 随机暂停几秒，数字越大越安全，但时间可能很长
+                        time.sleep(random.randint(1, 5))
 
                         # 拼好将要下载的某用户好友信息文件要命名的名字（该用户 uid.json）
                         next_file_name = next_file_path + \
@@ -189,11 +189,11 @@ if __name__ == '__main__':
     #  将参数请求 count 设置为 settings 中的数值。好像不需要设置也可以获取到某个用户所有的互关好友信息
 
     # 创建存放好友信息 json 文件的文件夹
-    if os.path.exists('./temp'):
-        shutil.rmtree('./temp')
-        os.makedirs('./temp')
+    if os.path.exists('./WFACat_data/temp'):
+        shutil.rmtree('./WFACat_data/temp')
+        os.makedirs('./WFACat_data/temp')
     else:
-        os.makedirs('./temp')
+        os.makedirs('./WFACat_data/temp')
 
     # 获取到 settings 中 person_name 微博用户对应的 uid
     person_uid = get_person_uid(settings.PERSON_NAME)
@@ -203,19 +203,19 @@ if __name__ == '__main__':
     根据 settings 中 person_name 微博用户对应的 uid
     下载并保存一度人脉信息的 json 文件
     """
-    if not os.path.exists('./temp/1'):
-        os.makedirs('./temp/1')
+    if not os.path.exists('./WFACat_data/temp/1'):
+        os.makedirs('./WFACat_data/temp/1')
 
     friends_info_json_file = requests.get(get_data_url(person_uid))
     if friends_info_json_file.status_code == requests.codes.ok:
         file_size = (len(friends_info_json_file.content) / 1024)  # 计算文件大小并输出
         print(
-            './temp/1/%s.json %.1f KB downloaded OK!' %
+            './WFACat_data/temp/1/%s.json %.1f KB downloaded OK!' %
             (str(person_uid), file_size))
     else:
         friends_info_json_file.raise_for_status()
 
-    with open('./temp/1/' + str(person_uid) + '.json', 'wb') as f:  # 保存下载的文件到硬盘
+    with open('./WFACat_data/temp/1/' + str(person_uid) + '.json', 'wb') as f:  # 保存下载的文件到硬盘
         f.write(friends_info_json_file.content)
     f.close()
 
