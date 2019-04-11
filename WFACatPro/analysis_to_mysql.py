@@ -109,8 +109,8 @@ def produce_my_friendinfo_dict():
     # 用一个字典存储研究对象的好友信息，研究对象每个好友的好友信息（一个列表）
     my_friends_info_dict = {}
 
-    file_list = os.listdir('./temp/1')
-    file_name = './temp/1/' + file_list[0]  # 文件夹下的 json 文件
+    file_list = os.listdir('./WFACat_data/temp/1')
+    file_name = './WFACat_data/temp/1/' + file_list[0]  # 文件夹下的 json 文件
 
     temp_save_friends_info_list = []
 
@@ -137,11 +137,11 @@ def produce_friends_friendinfo_dict():
     """
     everybody_friends_info_dict = {}
 
-    file_list = os.listdir('./temp/2')
+    file_list = os.listdir('./WFACat_data/temp/2')
 
     # 遍历 2 度文件夹下的 json 文件
     for json_file_num in range(0, len(file_list)):
-        file_name = './temp/2/' + file_list[json_file_num]  # 文件夹下的每一个 json 文件
+        file_name = './WFACat_data/temp/2/' + file_list[json_file_num]  # 文件夹下的每一个 json 文件
         temp_save_friends_info_list = []
 
         with open(file_name, 'r', encoding='utf-8') as one_json_file:  # 提取遍历 json 中每个用户的 uid
@@ -177,7 +177,7 @@ def write_all_person_info_in_mysql(db_name_params):
 
     person_writed_list = []
     # 因为自己的信息不需要写入数据库
-    my_friends_json_name = os.listdir('./temp/1')[0][0:10]
+    my_friends_json_name = os.listdir('./WFACat_data/temp/1')[0][0:10]
     person_writed_list.append(my_friends_json_name)
 
     """
@@ -186,7 +186,7 @@ def write_all_person_info_in_mysql(db_name_params):
     level_local = 1
 
     while level_local <= 2:
-        file_path = './temp/' + str(level_local)
+        file_path = './WFACat_data/temp/' + str(level_local)
         file_list = os.listdir(file_path)  # 第 n 度文件夹路径
 
         """
@@ -336,7 +336,7 @@ if __name__ == '__main__':
     总算法复杂度（比较次数）为排列组合算出来的次数 C n 2 次，n 是一度好友数量
     """
     print('log: two level friends...')
-    file_list = os.listdir('./temp/1')
+    file_list = os.listdir('./WFACat_data/temp/1')
     my_uid = file_list[0][0:10]  # 文件夹 1 下的 json 文件名
     temp_two_level_useful_friends_list = []
 

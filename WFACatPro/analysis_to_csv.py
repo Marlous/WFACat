@@ -19,7 +19,7 @@ def save_all_person_info_json_file_as_csv():
     level_local = 1
 
     while level_local <= settings.SET_LEVEL:
-        file_path = './temp/' + str(level_local)
+        file_path = './WFACat_data/temp/' + str(level_local)
         file_list = os.listdir(file_path)  # 第 n 度文件夹路径
 
         # 遍历 n 度文件夹下的 json 文件
@@ -39,7 +39,7 @@ def save_all_person_info_json_file_as_csv():
                     user_num = user_num + 1
 
                     if user_uid not in node_list:
-                        with open('./data/node.csv', 'a', newline='') as f1:
+                        with open('./WFACat_data/data/node.csv', 'a', newline='') as f1:
                             node_csv_file = csv.writer(f1)
                             node_one_data = []  # 将两个变量数据组成列表
                             node_one_data.append(user_uid)
@@ -48,7 +48,7 @@ def save_all_person_info_json_file_as_csv():
                         node_list.append(user_uid)
                         print('node: ' + str(user_uid) + ': ' + user_name)
 
-                    with open('./data/edge.csv', 'a', newline='') as f2:
+                    with open('./WFACat_data/data/edge.csv', 'a', newline='') as f2:
                         edge_csv_file = csv.writer(f2)
                         edge_one_data = []
                         edge_one_data.append(
@@ -78,38 +78,38 @@ if __name__ == '__main__':
         values = input('Please enter Y or N:')
 
     if values == 'Y':
-        if not os.path.exists('./temp'):
+        if not os.path.exists('./WFACat_data/temp'):
             print('ERROR! Please use \' get \' command to get data first!')
 
         # 记录已经写入 csv 的节点，避免重复写入
         node_list = []
 
-        if os.path.exists('./data'):
-            os.remove('./data/node.csv')
-            os.remove('./data/edge.csv')
+        if os.path.exists('./WFACat_data/data'):
+            os.remove('./WFACat_data/data/node.csv')
+            os.remove('./WFACat_data/data/edge.csv')
         else:
             # 创建用于存放 csv 文件的 data 目录（存放节点、边文件供 Gephi 数据可视化软件分析）
-            os.makedirs('./data')
+            os.makedirs('./WFACat_data/data')
 
         """
         创建节点、边的文件给可视化软件分析
         """
-        with open('./data/node.csv', 'a', newline='') as f:
+        with open('./WFACat_data/data/node.csv', 'a', newline='') as f:
             csv_file = csv.writer(f)
             csv_file.writerow(['id', 'label'])
 
-        with open('./data/edge.csv', 'a', newline='') as f:
+        with open('./WFACat_data/data/edge.csv', 'a', newline='') as f:
             csv_file = csv.writer(f)
             csv_file.writerow(['source', 'target', 'weight'])
 
         """
         将 settings 中的 person_name 用户的 uid 和 微博名写入节点文件
         """
-        person_json_file_path = os.listdir('./temp/1')
+        person_json_file_path = os.listdir('./WFACat_data/temp/1')
         # 即取一度人脉的文件名。uid 全部处理为字符串
         person_uid_local = str(person_json_file_path[0][0:10])
 
-        with open('./data/node.csv', 'a', newline='') as f:
+        with open('./WFACat_data/data/node.csv', 'a', newline='') as f:
             node_csv_file = csv.writer(f)
             node_one_data = []  # 将两个变量数据组成列表
             node_one_data.append(person_uid_local)
