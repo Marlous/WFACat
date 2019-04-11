@@ -109,6 +109,4 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
-temp/
-data/
-/WFACatPro/config.json
+/WFACatPro/WFACat_data/
