@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b00de9d-98c5-46fd-a9ae-b836e6e341b7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WFACatPro/get_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/WFACatPro/get_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WFACatPro/buckup_old_ver/analysis_to_csv.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WFACatPro/buckup_old_ver/analysis_to_mysql.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WFACatPro/buckup_old_ver/get_data.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -133,7 +134,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -146,16 +146,11 @@
               <item name="WFACat" type="462c0819:PsiDirectoryNode" />
               <item name="WFACatPro" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="WFACat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WFACat" type="462c0819:PsiDirectoryNode" />
-              <item name="WFACatPro" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -380,9 +375,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WFACatPro/config.json" />
     <entry file="file://$PROJECT_DIR$/WFACatPro/test_analysis_to_mysql.py" />
-    <entry file="file://$PROJECT_DIR$/WFACatPro/buckup_old_ver/test_main.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/WFACatPro/buckup_old_ver/test_main.py" />
     <entry file="file://$PROJECT_DIR$/WFACatPro/version.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
