@@ -341,7 +341,7 @@ if __name__ == '__main__':
             temp_set = set(friends_friendinfo_dict[person]) & set(friends_friendinfo_dict[temp_person])
             for item in list(temp_set):
                 temp_two_level_useful_friends_list.append(item)
-        count =count + 1
+        count = count + 1
 
     # 用元组去掉重复的
     two_level_useful_friends_list = list(set(temp_two_level_useful_friends_list))
