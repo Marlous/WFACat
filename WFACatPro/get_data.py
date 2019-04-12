@@ -111,6 +111,11 @@ def get_data_url(uid_params, page_params):
 
 
 def download_user_json_file(user_uid_params, user_json_file_saved_path_params):
+    """
+    :param user_uid_params: 某一个用户的 uid
+    :param user_json_file_saved_path_params: 将下载的此用户好友所有 json 文件保存的位置
+    :return: 无返回值
+    """
     user_uid = user_uid_params
     user_json_file_saved_path = user_json_file_saved_path_params
 
@@ -169,24 +174,25 @@ def download_over_one_level_user_json_file():
         if not os.path.exists(next_level_file_path):
             os.makedirs(next_level_file_path)
 
+        level_file_path = './WFACat_data/temp/' + str(level_local)  # 某度人脉文件夹
+        file_list = os.listdir(level_file_path)  # 某度文件夹中每个用户文件夹列表
+
         """
         遍历 n 度文件夹下的每个用户文件夹
         """
-        level_file_path = './WFACat_data/temp/' + str(level_local)  # 某度人脉文件夹
-        file_list = os.listdir(level_file_path)  # 某度文件夹中每个用户文件夹列表
         for user_file_num in range(0, len(file_list)):
+            user_file_name_path = './WFACat_data/temp/' + str(level_local) + '/' + file_list[user_file_num]  # 某用户文件夹
+            user_file_list = os.listdir(user_file_name_path)  # 某用户文件夹中 json 列表
 
             """
             遍历每个用户文件夹中的每个以数字命名的 json 文件
             """
-            user_file_name_path = './WFACat_data/temp/' + str(level_local) + '/' + file_list[user_file_num]  # 某用户文件夹
-            user_file_list = os.listdir(user_file_name_path)  # 某用户文件夹中 json 列表
             for json_file_num in range(0, len(user_file_list)):
+                json_file_name = user_file_name_path + '/' + user_file_list[json_file_num]
 
                 """
                 遍历每个 json 文件中的每个用户 uid，并下载其好友信息的 json 文件
                 """
-                json_file_name = user_file_name_path + '/' + user_file_list[json_file_num]
                 with open(json_file_name, 'r', encoding='utf-8') as f:  # 打开一个 json 文件
                     # 将 json 文件内容转为字典，注意字典的索引可以是字符串或整数
                     json_file_to_dict = json.loads(f.read())
