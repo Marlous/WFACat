@@ -167,6 +167,7 @@ def download_over_one_level_user_json_file():
 
     """
     遍历 n 个人脉文件夹
+    想要继续遍历下一层，在本层给出下层遍历需要的本层文件列表
     """
     while level_local < settings.SET_LEVEL:
         next_level = int(level_local) + 1  # 创建下一度人脉文件夹，从文件夹 2 开始创建
