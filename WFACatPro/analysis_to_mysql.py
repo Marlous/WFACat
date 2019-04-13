@@ -70,7 +70,7 @@ def create_db_table(db_name_params):
 
     cur.execute('USE ' + db_name_params + ';')
 
-    sql_create_table = "CREATE TABLE " + "`" + db_name_params + "`.`peopleinfo` (" \
+    sql_create_peopleinfo_table = "CREATE TABLE " + "`" + db_name_params + "`.`peopleinfo` (" \
         "`uid` CHAR(10) NOT NULL," \
         "`name` VARCHAR(45) NULL," \
         "`rel_me` VARCHAR(5) NULL," \
@@ -95,7 +95,14 @@ def create_db_table(db_name_params):
         "`total_number` INT NULL," \
         "`status_source` VARCHAR(50) NULL,PRIMARY KEY (`uid`)" \
         ");"
-    cur.execute(sql_create_table)
+
+    sql_create_mutualinfo_table = "CREATE TABLE " + "`" + db_name_params + "`.`mutualinfo` (" \
+        "`uid` CHAR(10) NOT NULL," \
+        "`mutual_follow` VARCHAR(10000) NULL,PRIMARY KEY (`uid`)" \
+        ");"
+
+    cur.execute(sql_create_peopleinfo_table)
+    cur.execute(sql_create_mutualinfo_table)
     db.commit()
 
     cur.close()
@@ -452,6 +459,16 @@ if __name__ == '__main__':
                     db.commit()
                     uid_saved.append(item)
 
+    """
+    将每个一度好友的互关列表写入数据库 mutual_follow
+    """
+    print('log: mutual_follow...')
+    for key in friends_friendinfo_dict:
+        value = ", ".join(friends_friendinfo_dict[key])
+
+        cur.execute("INSERT INTO " + DB_NAME +
+                    ".mutualinfo (uid, mutual_follow) VALUES ('" + str(key) + "', '" + str(value) + "');")
+        db.commit()
 
     """
     计算每个一度好友 connect_to_my_friends 写入数据库

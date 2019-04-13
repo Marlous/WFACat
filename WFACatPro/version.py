@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-WFACatPro.__version__
+WFACatPro.version
 ~~~~~~~~~~~~~~~~~~~
 This is a version info module.
 """
