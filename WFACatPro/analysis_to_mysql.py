@@ -75,7 +75,9 @@ def create_db_table(db_name_params):
         "`name` VARCHAR(45) NULL," \
         "`rel_me` VARCHAR(5) NULL," \
         "`connect_to_my_friends` VARCHAR(5000) NULL," \
+        "`connect_to_my_friends_count` INT NULL," \
         "`connect_to_two_level_friends` VARCHAR(5000) NULL," \
+        "`connect_to_two_level_friends_count` INT NULL," \
         "`province` VARCHAR(5) NULL," \
         "`city` VARCHAR(5) NULL," \
         "`location` VARCHAR(20) NULL," \
@@ -98,7 +100,7 @@ def create_db_table(db_name_params):
 
     sql_create_mutualinfo_table = "CREATE TABLE " + "`" + db_name_params + "`.`mutualinfo` (" \
         "`uid` CHAR(10) NOT NULL," \
-        "`mutual_follow` VARCHAR(10000) NULL,PRIMARY KEY (`uid`)" \
+        "`mutual_follow` TEXT NULL,PRIMARY KEY (`uid`)" \
         ");"
 
     cur.execute(sql_create_peopleinfo_table)
@@ -427,7 +429,7 @@ if __name__ == '__main__':
     cur.execute('USE ' + DB_NAME + ';')
 
     """
-    # 写入每个好友（一度、二度，全部）uid 信息
+    写入每个好友（一度、二度，全部）uid 信息
     """
     print('log: every user uid to mysql, may be long time, wait...')
     cur.execute('USE ' + DB_NAME + ';')
@@ -485,6 +487,7 @@ if __name__ == '__main__':
         cur.execute(
             "UPDATE " + DB_NAME +
             ".peopleinfo SET connect_to_my_friends = '" + temp_content +
+            "', connect_to_my_friends_count = '" + str(len(list(connect_to_my_friends))) +
             "' WHERE uid = '" + data + "';")
         db.commit()
         del temp_content
@@ -511,6 +514,7 @@ if __name__ == '__main__':
         cur.execute(
             "UPDATE " + DB_NAME +
             ".peopleinfo SET connect_to_two_level_friends = '" + temp_content +
+            "', connect_to_two_level_friends_count = '" + str(len(list(connect_to_two_level_friends))) +
             "' WHERE uid = '" + data + "';")
         db.commit()
         del temp_content
@@ -533,24 +537,26 @@ if __name__ == '__main__':
                 cur.execute(
                     "CREATE TABLE IF NOT EXISTS " + DB_NAME +
                     ".u" + person +
-                    "( uid CHAR(10) PRIMARY KEY, interfriends VARCHAR(5000)" + ")"
+                    " ( `uid` CHAR(10) PRIMARY KEY, `by_friends` VARCHAR(5000) NULL, `by_friends_count` INT NULL" + ");"
                 )
                 db.commit()
                 cur.execute(
                     "CREATE TABLE IF NOT EXISTS " + DB_NAME +
                     ".u" + temp_person +
-                    "( uid CHAR(10) PRIMARY KEY, interfriends VARCHAR(5000)" + ")"
+                    " ( `uid` CHAR(10) PRIMARY KEY, `by_friends` VARCHAR(5000) NULL, `by_friends_count` INT NULL" + ");"
                 )
                 db.commit()
 
                 temp_content = ", ".join(list(two_level_friends_inter_have))
                 cur.execute("INSERT INTO " + DB_NAME +
                             ".u" + person +
-                            " VALUES ('" + temp_person + "', '" + temp_content + "');")
+                            " VALUES ('" + temp_person + "', '" + temp_content +
+                            "', '" + str(len(two_level_friends_inter_have)) + "');")
                 db.commit()
                 cur.execute("INSERT INTO " + DB_NAME +
                             ".u" + temp_person +
-                            " VALUES ('" + person + "', '" + temp_content + "');")
+                            " VALUES ('" + person + "', '" + temp_content +
+                            "', '" + str(len(two_level_friends_inter_have)) + "');")
                 db.commit()
                 del temp_content
 

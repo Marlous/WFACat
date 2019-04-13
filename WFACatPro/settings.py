@@ -47,6 +47,13 @@ global DB_USER_PASSWORD
 global DB_CHARSET
 
 
+"""
+在 get_data.py 中下载某用户好友信息的随机最大的暂停时间（范围从 5 到设置的秒数）
+"""
+global TIME_PAUSE_MAX
+TIME_PAUSE_MAX = 15
+
+
 def print_config_info():
     with open('./WFACat_data/config.json', 'r', encoding='utf-8') as config_file:
         config_file_handle = json.loads(config_file.read())

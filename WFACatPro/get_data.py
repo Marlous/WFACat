@@ -19,6 +19,10 @@ from urllib.parse import urlparse
 import settings
 
 
+# 创建一个列表，用来保存已经下载过的人的好友信息
+global uid_json_file_downloaded
+
+
 def get_person_uid(person_name_params):
     """
     :param: 某个微博用户的用户名
@@ -206,7 +210,7 @@ def download_over_one_level_user_json_file():
 
                         # 判断是否已下载过该用户好友 json 文件
                         if user_uid not in uid_json_file_downloaded:
-                            time.sleep(random.randint(1, 6))  # 随机暂停几秒，数字越大越安全，但时间可能很长
+                            time.sleep(random.randint(5, settings.TIME_PAUSE_MAX))  # 随机暂停几秒，数字越大越安全
                             # 拼好用于存放其好友 json 文件的文件夹，以其 uid 命名
                             user_json_file_saved_path = next_level_file_path + '/' + str(user_uid)
                             os.makedirs(user_json_file_saved_path)
@@ -217,11 +221,10 @@ def download_over_one_level_user_json_file():
 
 
 if __name__ == '__main__':
-    print('= get data =')
-
     # 创建一个列表，用来保存已经下载过的人的好友信息
-    global uid_json_file_downloaded
     uid_json_file_downloaded = []
+
+    print('= get data =')
 
     # 拆解设置的 privacy_url
     parsed = urlparse(settings.PRIVACY_URL)
