@@ -7,4 +7,10 @@ This is a mysql query module.
 """
 
 
+import settings
+
 import pymysql
+
+
+if __name__ == '__main__':
+
