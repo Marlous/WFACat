@@ -5,9 +5,7 @@ WFACatPro.main
 ~~~~~~~~~~~~~~~~~~~
 This is a main module.
 """
-
-
-import version
+from modules import version
 
 import json
 import os
@@ -73,21 +71,23 @@ if __name__ == '__main__':
     """
     接受命令并运行对应的模块
     """
+    this_file_path = os.path.abspath(__file__)[:-7]
+
     while True:
         cmd = input('> ')
         if cmd == 'help':
-            os.system('help.py')
+            os.system(this_file_path + 'modules/help.py')
         elif cmd == 'conf':
-            os.system('settings.py')
+            os.system(this_file_path + 'modules/settings.py')
         elif cmd == 'get':
-            os.system('get_data.py')
+            os.system(this_file_path + 'modules/get_data.py')
         elif cmd == 'tocsv':
-            os.system('analysis_to_csv.py')
+            os.system(this_file_path + 'modules/analysis_to_csv.py')
         elif cmd == 'tomysql':
-            os.system('analysis_to_mysql.py')
-        elif cmd == 'detail':
-            os.system('mysql_query.py')
+            os.system(this_file_path + 'modules/analysis_to_mysql.py')
+        elif cmd == 'mysqld':
+            os.system(this_file_path + 'modules/mysql_query.py')
         elif cmd == 'tool':
-            os.system('tools.py')
+            os.system(this_file_path + 'modules/tools.py')
         elif cmd == 'quit':
             exit('Bye ~')
