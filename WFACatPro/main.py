@@ -85,7 +85,7 @@ if __name__ == '__main__':
             os.system(this_file_path + 'modules/analysis_to_csv.py')
         elif cmd == 'tomysql':
             os.system(this_file_path + 'modules/analysis_to_mysql.py')
-        elif cmd == 'detail':
+        elif cmd == 'mysqld':
             os.system(this_file_path + 'modules/mysql_query.py')
         elif cmd == 'tool':
             os.system(this_file_path + 'modules/tools.py')

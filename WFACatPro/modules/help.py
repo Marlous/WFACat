@@ -23,7 +23,7 @@ def print_help_info():
     print('get (get data from internet)')
     print('tocsv (produce csv file)')
     print('tomysql (analysis data and store to MySQL (start MySQL service first!))')
-    print('detail (Look some detail info about user deep analysis in MySQL)')
+    print('mysqld (Look some detail info about user deep analysis in MySQL)')
     print('tool (All about one user info)')
     print('quit')
 

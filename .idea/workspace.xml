@@ -2,22 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b00de9d-98c5-46fd-a9ae-b836e6e341b7" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/WFACatPro/modules/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Release/WFACatPro v2.0.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WFACatPro/analysis_to_csv.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WFACatPro/analysis_to_mysql.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WFACatPro/get_data.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WFACatPro/help.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/WFACatPro/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/WFACatPro/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WFACatPro/mysql_query.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WFACatPro/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WFACatPro/tests/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WFACatPro/tests/test_main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WFACatPro/tools.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WFACatPro/version.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup/setup/setup.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup/setup_PyInstaller/setup_PyInstaller.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup/setup_PyInstaller/setup_PyInstaller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WFACatPro/modules/help.py" beforeDir="false" afterPath="$PROJECT_DIR$/WFACatPro/modules/help.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WFACatPro/modules/mysql_query.py" beforeDir="false" afterPath="$PROJECT_DIR$/WFACatPro/modules/mysql_query.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WFACatPro/modules/version.py" beforeDir="false" afterPath="$PROJECT_DIR$/WFACatPro/modules/version.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,7 +16,21 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="mysql_query.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WFACatPro/modules/mysql_query.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+              <folding>
+                <element signature="e#107#135#0" expanded="true" />
+                <element signature="e#328#2914#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -67,23 +70,23 @@
         <option value="$PROJECT_DIR$/WFACatPro/setup_PyInstaller.py" />
         <option value="$PROJECT_DIR$/WFACatPro/settings.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/__init__.py" />
-        <option value="$PROJECT_DIR$/WFACatPro/modules/help.py" />
-        <option value="$PROJECT_DIR$/WFACatPro/modules/version.py" />
         <option value="$PROJECT_DIR$/setup/setup_PyInstaller/setup_PyInstaller.py" />
-        <option value="$PROJECT_DIR$/WFACatPro/modules/mysql_query.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/get_data.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/analysis_to_csv.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/tools.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/analysis_to_mysql.py" />
         <option value="$PROJECT_DIR$/WFACatPro/main.py" />
+        <option value="$PROJECT_DIR$/WFACatPro/modules/help.py" />
+        <option value="$PROJECT_DIR$/WFACatPro/modules/version.py" />
+        <option value="$PROJECT_DIR$/WFACatPro/modules/mysql_query.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-34" />
-    <option name="y" value="17" />
+    <option name="x" value="-6" />
+    <option name="y" value="20" />
     <option name="width" value="1386" />
-    <option name="height" value="755" />
+    <option name="height" value="728" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -93,6 +96,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -100,11 +104,21 @@
               <item name="WFACat" type="b2602c69:ProjectViewProjectNode" />
               <item name="WFACat" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="WFACat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WFACat" type="462c0819:PsiDirectoryNode" />
+              <item name="WFACatPro" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WFACat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WFACat" type="462c0819:PsiDirectoryNode" />
+              <item name="WFACatPro" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -172,6 +186,24 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="mysql_query" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="WFACat" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/WFACatPro/modules" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/WFACatPro/modules/mysql_query.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="setup_PyInstaller" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="WFACat" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -194,10 +226,12 @@
       <item itemvalue="Python.analysis_to_mysql" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python.setup_PyInstaller" />
+      <item itemvalue="Python.mysql_query" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.mysql_query" />
         <item itemvalue="Python.setup_PyInstaller" />
         <item itemvalue="Python.analysis_to_mysql" />
       </list>
@@ -218,15 +252,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19912152" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17642753" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="right" id="R Graphics" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.22913617" side_tool="true" visible="true" weight="0.12420382" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.1068814" side_tool="true" weight="0.7101911" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.71496814" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.77086383" weight="0.843949" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8931186" weight="0.23089172" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.19426751" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -304,24 +339,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WFACatPro/modules/version.py">
+    <entry file="file://$PROJECT_DIR$/Pipfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WFACatPro/modules/settings.py">
+    <entry file="file://$PROJECT_DIR$/WFACatPro/modules/tools.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="146" selection-start-line="146" selection-end-line="146" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WFACatPro/modules/help.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="21">
+          <caret line="295" column="23" selection-start-line="295" selection-start-column="23" selection-end-line="295" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -332,53 +360,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WFACatPro/modules/mysql_query.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WFACatPro/modules/tools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-253">
-          <caret line="295" column="23" selection-start-line="295" selection-start-column="23" selection-end-line="295" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pipfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WFACatPro/modules/get_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
+        <state relative-caret-position="21">
           <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#101#129#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WFACatPro/modules/analysis_to_mysql.py">
+    <entry file="file://$PROJECT_DIR$/WFACatPro/modules/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="67">
+          <caret line="147" lean-forward="true" selection-start-line="147" selection-end-line="147" />
           <folding>
-            <element signature="e#119#147#0" expanded="true" />
+            <element signature="e#754#1906#0" />
+            <element signature="e#1968#2551#0" />
+            <element signature="e#2613#3196#0" />
+            <element signature="e#3301#4059#0" />
+            <element signature="e#4124#4717#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WFACatPro/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="76" column="25" lean-forward="true" selection-start-line="76" selection-start-column="25" selection-end-line="76" selection-end-column="25" />
+        <state relative-caret-position="-163">
+          <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
           <folding>
             <element signature="e#91#118#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WFACatPro/modules/version.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WFACatPro/modules/analysis_to_mysql.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="e#119#147#0" expanded="true" />
+            <element signature="e#1547#3425#0" />
+            <element signature="e#3466#4774#0" />
+            <element signature="e#4820#6499#0" />
+            <element signature="e#6558#15063#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WFACatPro/modules/help.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WFACatPro/modules/mysql_query.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#107#135#0" expanded="true" />
+            <element signature="e#328#2914#0" />
           </folding>
         </state>
       </provider>
