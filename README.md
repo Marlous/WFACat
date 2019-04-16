@@ -1,6 +1,6 @@
 # WFACat
 ## Introduction - 介绍
-Weibo friends' net Deep analysis 微博好友关系网络深度分析（人脉深度为二）  
+Weibo friends' net Deep analysis 微博用户好友人际关系网络深度分析（人脉深度为二）  
 
 ### Summary - 概要
 - 你只需一个账号的授权链接、输入所要研究的对象。
@@ -37,19 +37,25 @@ Weibo friends' net Deep analysis 微博好友关系网络深度分析（人脉�
 - 二度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、互关好友总数、客户端
 
 3. 推测：
-根据统计的结果做出一些有趣的推测（如统计手机客户端型号等）。
+- 根据统计的结果做出一些有趣的推测（如统计手机客户端型号等）。
 
 ## Requirements - 必要条件
 - OS：Windows 10  
 - IDE：PyCharm
 - Python 3.7（64 bit）
 
-## ## Usage - 用法
+## Usage - 用法
 1. 克隆此仓库使用 IDE 运行，或直接使用 Release 文件夹中打包好的程序。
 
-2. 使用流程：使用 `help` 命令查看帮助；使用 `conf` 命令进行配置；使用 `get` 命令获得基本数据；使用 `tocsv` 等命令生成需要的文件（详见 help 命令显示的帮助）；使用 `mysqld` 命令查看深度分析的结果信息。
+2. 使用流程：使用 `help` 命令查看帮助；使用 `conf` 命令进行配置；使用 `get` 命令获得基本数据；使用 `tocsv` 等命令生成需要的文件（详见 help 命令显示的帮助）；使用 `mysqld` 等命令查看深度分析的结果信息。
+
+3. 软件使用效果截图（分别为本软件使用界面、使用 Gephi 分析）：
+![软件使用效果截图](./README_img/图1.PNG)
+![软件使用效果截图](./README_img/图2.PNG)
 
 ## Support - 支持
+By Marlous
+
 ### Contact - 联系
 邮箱：Goonecat@foxmail.com
 
