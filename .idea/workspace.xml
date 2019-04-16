@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b00de9d-98c5-46fd-a9ae-b836e6e341b7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WFACatPro/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/WFACatPro/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WFACatPro/modules/help.py" beforeDir="false" afterPath="$PROJECT_DIR$/WFACatPro/modules/help.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WFACatPro/modules/mysql_query.py" beforeDir="false" afterPath="$PROJECT_DIR$/WFACatPro/modules/mysql_query.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WFACatPro/modules/version.py" beforeDir="false" afterPath="$PROJECT_DIR$/WFACatPro/modules/version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,11 +16,10 @@
       <file leaf-file-name="mysql_query.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WFACatPro/modules/mysql_query.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="7">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
               <folding>
                 <element signature="e#107#135#0" expanded="true" />
-                <element signature="e#328#2914#0" />
               </folding>
             </state>
           </provider>
@@ -96,7 +91,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -119,6 +113,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -252,16 +247,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17642753" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17642753" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="right" id="R Graphics" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.1068814" side_tool="true" weight="0.7101911" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.71496814" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8931186" weight="0.23089172" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8931186" weight="0.5557325" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.19426751" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -371,13 +365,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="67">
           <caret line="147" lean-forward="true" selection-start-line="147" selection-end-line="147" />
-          <folding>
-            <element signature="e#754#1906#0" />
-            <element signature="e#1968#2551#0" />
-            <element signature="e#2613#3196#0" />
-            <element signature="e#3301#4059#0" />
-            <element signature="e#4124#4717#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -402,13 +389,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
           <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-          <folding>
-            <element signature="e#119#147#0" expanded="true" />
-            <element signature="e#1547#3425#0" />
-            <element signature="e#3466#4774#0" />
-            <element signature="e#4820#6499#0" />
-            <element signature="e#6558#15063#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -421,11 +401,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WFACatPro/modules/mysql_query.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="7">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
           <folding>
             <element signature="e#107#135#0" expanded="true" />
-            <element signature="e#328#2914#0" />
           </folding>
         </state>
       </provider>
