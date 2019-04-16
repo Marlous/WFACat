@@ -50,8 +50,8 @@ Weibo friends' net Deep analysis 微博用户好友人际关系网络深度分�
 2. 使用流程：使用 `help` 命令查看帮助；使用 `conf` 命令进行配置；使用 `get` 命令获得基本数据；使用 `tocsv` 等命令生成需要的文件（详见 help 命令显示的帮助）；使用 `mysqld` 等命令查看深度分析的结果信息。
 
 3. 软件使用效果截图（分别为使用 Gephi 分析、本软件使用界面）：
-[软件使用效果截图](./README_img/图1.PNG)
-[软件使用效果截图](./README_img/图2.PNG)
+![软件使用效果截图](./README_img/图1.PNG)
+![软件使用效果截图](./README_img/图2.PNG)
 
 ## Support - 支持
 By Marlous
