@@ -7,7 +7,7 @@ This is a tools module.
 """
 
 
-import settings
+from modules import settings
 
 import json
 import os
@@ -293,6 +293,7 @@ if __name__ == '__main__':
 
     # 用户输入所要查的微博用户名，得到其用户基本信息，并得到 uid
     person_name = input('Enter weibo user name that you want find: ')
+    print('log: wait...')
     person_uid = get_person_uid(person_name)
 
     # 下载查询的某用户详细信息的 json 文件

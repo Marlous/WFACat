@@ -7,12 +7,12 @@ This is a analysis to mysql module.
 """
 
 
-import settings
+from modules import settings
 
-import pymysql
 import os
 import json
 import re
+import pymysql
 import warnings
 
 

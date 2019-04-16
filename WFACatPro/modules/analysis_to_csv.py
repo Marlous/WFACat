@@ -7,7 +7,7 @@ This is a analysis store data module.
 """
 
 
-import settings
+from modules import settings
 
 import csv
 import json
