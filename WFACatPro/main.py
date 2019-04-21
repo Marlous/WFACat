@@ -76,18 +76,18 @@ if __name__ == '__main__':
     while True:
         cmd = input('> ')
         if cmd == 'help':
-            os.system(this_file_path + 'modules/help.py')
+            os.system("\"" + this_file_path + "modules/help.py\"")
         elif cmd == 'conf':
-            os.system(this_file_path + 'modules/settings.py')
+            os.system("\"" + this_file_path + "modules/settings.py\"")
         elif cmd == 'get':
-            os.system(this_file_path + 'modules/get_data.py')
+            os.system("\"" + this_file_path + "modules/get_data.py\"")
         elif cmd == 'tocsv':
-            os.system(this_file_path + 'modules/analysis_to_csv.py')
+            os.system("\"" + this_file_path + "modules/analysis_to_csv.py\"")
         elif cmd == 'tomysql':
-            os.system(this_file_path + 'modules/analysis_to_mysql.py')
+            os.system("\"" + this_file_path + "modules/analysis_to_mysql.py\"")
         elif cmd == 'mysqld':
-            os.system(this_file_path + 'modules/mysql_query.py')
+            os.system("\"" + this_file_path + "modules/mysql_query.py\"")
         elif cmd == 'tool':
-            os.system(this_file_path + 'modules/tools.py')
+            os.system("\"" + this_file_path + "modules/tools.py\"")
         elif cmd == 'quit':
             exit('Bye ~')

@@ -7,7 +7,7 @@ This is a get_data module.
 """
 
 
-from modules import settings
+import settings
 
 import json
 import os

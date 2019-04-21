@@ -7,7 +7,7 @@ This is a mysql query module.
 """
 
 
-from modules import settings
+import settings
 
 import traceback
 import pymysql

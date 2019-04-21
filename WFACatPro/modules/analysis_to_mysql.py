@@ -7,7 +7,7 @@ This is a analysis to mysql module.
 """
 
 
-from modules import settings
+import settings
 
 import os
 import json

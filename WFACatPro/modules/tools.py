@@ -7,7 +7,7 @@ This is a tools module.
 """
 
 
-from modules import settings
+import settings
 
 import json
 import os
