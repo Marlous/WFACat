@@ -25,6 +25,7 @@ def print_help_info():
     print('tomysql (analysis data and store to MySQL (start MySQL service first!))')
     print('mysqld (Look some detail info about user deep analysis in MySQL)')
     print('tool (All about one user info)')
+    print('datac (analysis data that in MySQL to store into MySQL. Then use Tableau to analysis.)')
     print('quit')
 
 
