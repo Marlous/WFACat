@@ -80,6 +80,7 @@ def query_basic_info_by_name():
 # 通过 uid 查某用户基本信息
 # SELECT * FROM DB_NAME_QUERY.peopleinfo WHERE uid = 'uid_params';
 
+
 # 通过微博用户名查某用户的互关好友列表及其好友信息
 
 # 通过微博用户名查某一度好友能通过圈内二度好友认识的一度好友
