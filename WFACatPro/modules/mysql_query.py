@@ -7,10 +7,11 @@ This is a mysql query module.
 """
 
 
-import settings
-
 import traceback
+
 import pymysql
+
+import settings
 
 
 global DB_NAME_QUERY

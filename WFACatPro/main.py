@@ -5,10 +5,12 @@ WFACatPro.main
 ~~~~~~~~~~~~~~~~~~~
 This is a main module.
 """
-from modules import version
+
 
 import json
 import os
+
+from modules import version
 
 
 if __name__ == '__main__':
@@ -16,7 +18,8 @@ if __name__ == '__main__':
     print('You could use \'help\' command to get help!')
     print('If appear Python ERROR, please config correct configuration!')
     print('Warning! If you want store data to MySQL, you must set MySQL default charset is utf8mb4 first!!!')
-    print('Change MySQL chartset: find my.ini, change [mysql] and [mysqld], then change to utf8mb4, restart service.')
+    print(
+        'Change MySQL chartset: find my.ini, change [mysql] and [mysqld], then change to utf8mb4, restart service.')
     print('')
 
     # 创建存放数据的文件夹
