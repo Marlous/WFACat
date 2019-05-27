@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0b00de9d-98c5-46fd-a9ae-b836e6e341b7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WFACatPro/GUI_Web/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WFACatPro/modules/mysql_query.py" beforeDir="false" afterPath="$PROJECT_DIR$/WFACatPro/modules/mysql_query.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,11 +17,12 @@
       <file leaf-file-name="mysql_query.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WFACatPro/modules/mysql_query.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="82" selection-start-line="82" selection-end-line="82" />
+            <state relative-caret-position="171">
+              <caret line="146" lean-forward="true" selection-start-line="146" selection-end-line="146" />
               <folding>
                 <element signature="e#107#123#0" expanded="true" />
                 <element signature="e#247#2843#0" />
+                <element signature="e#2966#5646#0" />
               </folding>
             </state>
           </provider>
@@ -75,9 +76,9 @@
         <option value="$PROJECT_DIR$/WFACatPro/modules/tools.py" />
         <option value="$PROJECT_DIR$/WFACatPro/main.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/settings.py" />
-        <option value="$PROJECT_DIR$/WFACatPro/modules/mysql_query.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/get_data.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/analysis_to_mysql.py" />
+        <option value="$PROJECT_DIR$/WFACatPro/modules/mysql_query.py" />
       </list>
     </option>
   </component>
@@ -95,6 +96,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -107,11 +109,16 @@
               <item name="WFACat" type="462c0819:PsiDirectoryNode" />
               <item name="WFACatPro" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="WFACat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WFACat" type="462c0819:PsiDirectoryNode" />
+              <item name="WFACatPro" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -245,15 +252,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17642753" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17642753" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="right" id="R Graphics" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.1068814" side_tool="true" weight="0.7101911" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="7" sideWeight="0.10761347" side_tool="true" visible="true" weight="0.46815288" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.71496814" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8931186" weight="0.21656051" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.89238656" weight="0.3535032" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.26751593" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -404,11 +412,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WFACatPro/modules/mysql_query.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="82" selection-start-line="82" selection-end-line="82" />
+        <state relative-caret-position="171">
+          <caret line="146" lean-forward="true" selection-start-line="146" selection-end-line="146" />
           <folding>
             <element signature="e#107#123#0" expanded="true" />
             <element signature="e#247#2843#0" />
+            <element signature="e#2966#5646#0" />
           </folding>
         </state>
       </provider>
