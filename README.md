@@ -54,10 +54,9 @@ Weibo friends' net Deep analysis 微博用户好友人际关系网络深度分�
 ![软件使用效果截图](./README_img/图2.PNG)
 
 ## Support - 支持
-By Marlous
-
 ### Contact - 联系
-邮箱：Goonecat@foxmail.com
+- By Marlous
+- 邮箱：Goonecat@foxmail.com
 
 ## License - 版权信息
 WFACat is released under the GPL license. See [LICENSE](https://github.com/Marlous/WFACat/blob/master/LICENSE) for additional details.
