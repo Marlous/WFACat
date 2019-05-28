@@ -143,10 +143,39 @@ def query_basic_info_by_uid():
         traceback.print_exc()
 
 
-# 通过微博用户名查某用户的互关好友列表及其好友信息
+# 通过微博用户名查某用户的互关好友列表
+def query_friend_mutual_user():
+    name_params = input('Enter name: ')
+
+    try:
+        cur.execute("SELECT * FROM %s.peopleinfo WHERE name = \'%s\'" % (DB_NAME_QUERY, name_params))
+        result = cur.fetchone()
+        row = result
+
+        uid_params = str(row[0])
+
+        cur.execute("SELECT * FROM %s.mutualinfo WHERE uid = \'%s\'" % (DB_NAME_QUERY, uid_params))
+        result = cur.fetchone()
+        row = result
+
+        temp_mutual_follow = []
+        for user_uid in row[1].split(', '):
+            cur.execute("SELECT name FROM %s.peopleinfo WHERE uid = \'%s\'" % (DB_NAME_QUERY, str(user_uid)))
+            row = cur.fetchone()
+            temp_mutual_follow.append(str(row)[2:][:-3])
+
+        mutual_follow_name = ', '.join(temp_mutual_follow)
+
+        print("%s" % (mutual_follow_name))
+
+    except Exception:
+        print('ERROR! Unable to fetch data')
+        traceback.print_exc()
 
 
 # 通过微博用户名查某一度好友能通过圈内二度好友认识的一度好友
+
+
 
 # 所有一度好友信息
 
@@ -194,7 +223,7 @@ if __name__ == '__main__':
     print('= 查询 =')
     print('1 通过微博用户名查某用户基本信息')
     print('2 通过 uid 查某用户基本信息')
-    print('3 通过微博用户名查某用户的互关好友列表及其好友信息')
+    print('3 通过微博用户名查某用户的互关好友列表')
     print('4 通过微博用户名查某一度好友能通过圈内二度好友认识的一度好友')
     print('5 所有一度好友信息')
     print('= 统计 =')
@@ -218,6 +247,9 @@ if __name__ == '__main__':
 
         if value == '2':
             query_basic_info_by_uid()
+
+        if value == '3':
+            query_friend_mutual_user()
 
         if value == 'q':
             cur.close()
