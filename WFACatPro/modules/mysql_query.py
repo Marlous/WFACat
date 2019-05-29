@@ -174,10 +174,41 @@ def query_friend_mutual_user():
 
 
 # 通过微博用户名查某一度好友能通过圈内二度好友认识的一度好友
+def query_one_level_friend_probably_one_level():
+    name_params = input('Enter name: ')
 
+    try:
+        cur.execute("SELECT * FROM %s.peopleinfo WHERE name = \'%s\'" % (DB_NAME_QUERY, name_params))
+        result = cur.fetchone()
+        row = result
+
+        uid_params = str(row[0])
+
+        cur.execute("SELECT * FROM %s.u%s" % (DB_NAME_QUERY, uid_params))
+        result = cur.fetchall()
+
+        for row in result:
+            cur.execute("SELECT * FROM %s.peopleinfo WHERE uid = \'%s\'" % (DB_NAME_QUERY, str(row[0])))
+            row_people = cur.fetchone()
+            people_name = row_people[1]
+
+            friend_people_list = []
+            for by_friend_uid in row[1].split(', '):
+                cur.execute("SELECT * FROM %s.peopleinfo WHERE uid = \'%s\'" % (DB_NAME_QUERY, by_friend_uid))
+                row_friend_people = cur.fetchone()
+                each_people_name = row_friend_people[1]
+                friend_people_list.append(str(each_people_name))
+            friend_people_name = ', '.join(friend_people_list)
+
+            print("Probably people: %s via: %s count %d" % (people_name, friend_people_name, row[2]))
+
+    except Exception:
+        print('ERROR! Unable to fetch data')
+        traceback.print_exc()
 
 
 # 所有一度好友信息
+
 
 """
 统计
@@ -250,6 +281,9 @@ if __name__ == '__main__':
 
         if value == '3':
             query_friend_mutual_user()
+
+        if value == '4':
+            query_one_level_friend_probably_one_level()
 
         if value == 'q':
             cur.close()
