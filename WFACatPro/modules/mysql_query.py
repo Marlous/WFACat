@@ -208,6 +208,69 @@ def query_one_level_friend_probably_one_level():
 
 
 # 所有一度好友信息
+def query_all_one_level_friend():
+    people_name_my_friend = ""
+    people_name_two_level_friend = ""
+
+    try:
+        cur.execute("SELECT * FROM %s.peopleinfo WHERE rel_me = \'1\'" % (DB_NAME_QUERY))
+        result = cur.fetchall()
+
+        for row in result:
+            uid = str(row[0])
+            name = str(row[1])
+
+            connect_to_my_friends_count = row[4]
+            connect_to_my_friends = str(row[3])
+            if connect_to_my_friends_count >= 2:
+                people_uid_to_name_my_friend_list = []
+                for people_uid_my_friend in connect_to_my_friends.split(", "):
+                    cur.execute(
+                        "SELECT * FROM %s.peopleinfo WHERE uid = \'%s\'" % (DB_NAME_QUERY, people_uid_my_friend))
+                    row_temp = cur.fetchone()
+                    each_people_name = row_temp[1]
+                    people_uid_to_name_my_friend_list.append(str(each_people_name))
+                    people_name_my_friend = ', '.join(people_uid_to_name_my_friend_list)
+
+            connect_to_two_level_friends_count = row[6]
+            connect_to_two_level_friends = str(row[5])
+            if connect_to_two_level_friends_count >= 2:
+                people_uid_to_name_two_level_friend_list = []
+                for people_uid_two_level_friend in connect_to_two_level_friends.split(", "):
+                    cur.execute(
+                        "SELECT * FROM %s.peopleinfo WHERE uid = \'%s\'" % (DB_NAME_QUERY, people_uid_two_level_friend))
+                    row_temp_2 = cur.fetchone()
+                    each_people_name_2 = row_temp_2[1]
+                    people_uid_to_name_two_level_friend_list.append(str(each_people_name_2))
+                    people_name_two_level_friend = ', '.join(people_uid_to_name_two_level_friend_list)
+
+            location = str(row[9])
+            description = str(row[10])
+            gender = str(row[15])
+            followers_count = str(row[16])
+            friends_count = str(row[17])
+            statuses_count = str(row[18])
+            favourites_count = str(row[20])
+            created_at = str(row[21])
+            verified = str(row[22])
+            total_number = str(row[23])
+            status_source = str(row[24])
+
+            print("-----------------------------------------------------------------------------")
+            print("uid: %s / name: %s / acquire one level people: %s / acquire one level people count: %d / \
+            acquire two level people: %s / acquire two level people count: %d / \
+            location: %s / description: %s / gender: %s / followers count: %s / friends count: %s / \
+            statuses count: %s / favourites count: %s / created at: %s / verified: %s / \
+            total friends number: %s / client: %s"
+                  % (uid, name, people_name_my_friend, connect_to_my_friends_count,
+                     people_name_two_level_friend, connect_to_two_level_friends_count,
+                     location, description, gender, followers_count, friends_count,
+                     statuses_count, favourites_count, created_at, verified,
+                     total_number, status_source))
+
+    except Exception:
+        print('ERROR! Unable to fetch data')
+        traceback.print_exc()
 
 
 """
@@ -284,6 +347,9 @@ if __name__ == '__main__':
 
         if value == '4':
             query_one_level_friend_probably_one_level()
+
+        if value == '5':
+            query_all_one_level_friend()
 
         if value == 'q':
             cur.close()

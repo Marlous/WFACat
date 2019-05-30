@@ -16,14 +16,14 @@
       <file leaf-file-name="mysql_query.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WFACatPro/modules/mysql_query.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="210" lean-forward="true" selection-start-line="210" selection-end-line="210" />
+            <state relative-caret-position="127">
+              <caret line="321" column="21" selection-start-line="321" selection-start-column="13" selection-end-line="321" selection-end-column="21" />
               <folding>
                 <element signature="e#107#123#0" expanded="true" />
                 <element signature="e#247#2934#0" />
                 <element signature="e#3057#5740#0" />
                 <element signature="e#5800#6667#0" />
-                <element signature="e#6755#7456#0" />
+                <element signature="e#6755#7946#0" />
               </folding>
             </state>
           </provider>
@@ -83,9 +83,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-6" />
-    <option name="y" value="20" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="29" />
+    <option name="y" value="9" />
     <option name="width" value="1386" />
     <option name="height" value="728" />
   </component>
@@ -97,7 +97,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -120,6 +119,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -252,16 +252,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="29" y="9" width="1386" height="728" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17642753" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17591241" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="right" id="R Graphics" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.10980967" side_tool="true" visible="true" weight="0.87738854" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.110948905" side_tool="true" visible="true" weight="0.9477124" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.71496814" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.89019036" weight="0.03343949" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8890511" weight="0.27941176" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.26751593" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -412,14 +412,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WFACatPro/modules/mysql_query.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="210" lean-forward="true" selection-start-line="210" selection-end-line="210" />
+        <state relative-caret-position="127">
+          <caret line="321" column="21" selection-start-line="321" selection-start-column="13" selection-end-line="321" selection-end-column="21" />
           <folding>
             <element signature="e#107#123#0" expanded="true" />
             <element signature="e#247#2934#0" />
             <element signature="e#3057#5740#0" />
             <element signature="e#5800#6667#0" />
-            <element signature="e#6755#7456#0" />
+            <element signature="e#6755#7946#0" />
           </folding>
         </state>
       </provider>
