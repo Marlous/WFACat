@@ -209,14 +209,14 @@ def query_one_level_friend_probably_one_level():
 
 # 所有一度好友信息
 def query_all_one_level_friend():
-    people_name_my_friend = ""
-    people_name_two_level_friend = ""
-
     try:
         cur.execute("SELECT * FROM %s.peopleinfo WHERE rel_me = \'1\'" % (DB_NAME_QUERY))
         result = cur.fetchall()
 
         for row in result:
+            people_name_my_friend = ""
+            people_name_two_level_friend = ""
+
             uid = str(row[0])
             name = str(row[1])
 
@@ -231,6 +231,11 @@ def query_all_one_level_friend():
                     each_people_name = row_temp[1]
                     people_uid_to_name_my_friend_list.append(str(each_people_name))
                     people_name_my_friend = ', '.join(people_uid_to_name_my_friend_list)
+            elif connect_to_my_friends_count == 1:
+                cur.execute("SELECT * FROM %s.peopleinfo WHERE uid = \'%s\'" % (DB_NAME_QUERY, connect_to_my_friends))
+                row_temp = cur.fetchone()
+                one_people_name = row_temp[1]
+                people_name_my_friend = one_people_name
 
             connect_to_two_level_friends_count = row[6]
             connect_to_two_level_friends = str(row[5])
@@ -243,6 +248,11 @@ def query_all_one_level_friend():
                     each_people_name_2 = row_temp_2[1]
                     people_uid_to_name_two_level_friend_list.append(str(each_people_name_2))
                     people_name_two_level_friend = ', '.join(people_uid_to_name_two_level_friend_list)
+            elif connect_to_my_friends_count == 1:
+                cur.execute("SELECT * FROM %s.peopleinfo WHERE uid = \'%s\'" % (DB_NAME_QUERY, connect_to_two_level_friends))
+                row_temp_2 = cur.fetchone()
+                one_people_name_2 = row_temp_2[1]
+                people_name_two_level_friend = one_people_name_2
 
             location = str(row[9])
             description = str(row[10])
