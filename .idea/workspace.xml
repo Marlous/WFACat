@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b00de9d-98c5-46fd-a9ae-b836e6e341b7" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WFACatPro/modules/mysql_query.py" beforeDir="false" afterPath="$PROJECT_DIR$/WFACatPro/modules/mysql_query.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WFACatPro/modules/version.py" beforeDir="false" afterPath="$PROJECT_DIR$/WFACatPro/modules/version.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,15 +18,15 @@
       <file leaf-file-name="mysql_query.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WFACatPro/modules/mysql_query.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="284" lean-forward="true" selection-start-line="284" selection-end-line="284" />
+            <state relative-caret-position="112">
+              <caret line="359" lean-forward="true" selection-start-line="359" selection-end-line="359" />
               <folding>
                 <element signature="e#107#123#0" expanded="true" />
                 <element signature="e#247#2934#0" />
                 <element signature="e#3057#5740#0" />
                 <element signature="e#5800#6667#0" />
                 <element signature="e#6755#7946#0" />
-                <element signature="e#8004#11143#0" />
+                <element signature="e#7998#11873#0" />
               </folding>
             </state>
           </provider>
@@ -70,7 +72,6 @@
         <option value="$PROJECT_DIR$/WFACatPro/settings.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/__init__.py" />
         <option value="$PROJECT_DIR$/setup/setup_PyInstaller/setup_PyInstaller.py" />
-        <option value="$PROJECT_DIR$/WFACatPro/modules/version.py" />
         <option value="$PROJECT_DIR$/WFACatPro/__init__.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/analysis_to_csv.py" />
         <option value="$PROJECT_DIR$/WFACatPro/data_analysis/data_clear.py" />
@@ -80,6 +81,7 @@
         <option value="$PROJECT_DIR$/WFACatPro/modules/settings.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/get_data.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/analysis_to_mysql.py" />
+        <option value="$PROJECT_DIR$/WFACatPro/modules/version.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/mysql_query.py" />
       </list>
     </option>
@@ -98,6 +100,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -120,7 +123,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -259,10 +261,10 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="right" id="R Graphics" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.11200586" side_tool="true" visible="true" weight="0.95859873" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.112737924" side_tool="true" visible="true" weight="0.039808918" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.71496814" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.88799417" weight="0.16082802" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8872621" weight="0.039808918" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.26751593" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -281,7 +283,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="13" />
+      <option name="time" value="14" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -348,13 +350,6 @@
     <entry file="file://$PROJECT_DIR$/WFACatPro/data_analysis/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/WFACatPro/modules/version.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WFACatPro/modules/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -411,17 +406,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WFACatPro/modules/version.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/WFACatPro/modules/mysql_query.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="284" lean-forward="true" selection-start-line="284" selection-end-line="284" />
+        <state relative-caret-position="112">
+          <caret line="359" lean-forward="true" selection-start-line="359" selection-end-line="359" />
           <folding>
             <element signature="e#107#123#0" expanded="true" />
             <element signature="e#247#2934#0" />
             <element signature="e#3057#5740#0" />
             <element signature="e#5800#6667#0" />
             <element signature="e#6755#7946#0" />
-            <element signature="e#8004#11143#0" />
+            <element signature="e#7998#11873#0" />
           </folding>
         </state>
       </provider>

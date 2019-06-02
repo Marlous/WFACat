@@ -286,7 +286,41 @@ def query_all_one_level_friend():
 """
 统计
 """
-# 总体概况：总人数、一度好友数、圈内二度好友数、二度好友数
+# 总体概况：总人数、一度好友数、圈内二度好友数、圈外二度好友数、二度好友数
+def statistic_person_count():
+    try:
+        cur.execute("SELECT COUNT(rel_me) FROM %s.peopleinfo" % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        total_people = row[0]
+        print("总人数: %d" % (total_people))
+
+        cur.execute("SELECT COUNT(rel_me) FROM %s.peopleinfo WHERE rel_me = \'1\'" % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        one_level_people = row[0]
+        one_level_people_proportion = (one_level_people / total_people) * 100
+        print("一度好友数: %d / 占比: %.2f%%" % (one_level_people, one_level_people_proportion))
+
+        cur.execute("SELECT COUNT(rel_me) FROM %s.peopleinfo WHERE rel_me = \'2\'" % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        two_level_in_people = row[0]
+        two_level_in_people_proportion = (two_level_in_people / total_people) * 100
+        print("圈内二度好友数（与研究对象一度好友相关的二度好友）: %d / 占比: %.2f%%"
+              % (two_level_in_people, two_level_in_people_proportion))
+
+        two_level_out_people = total_people - two_level_in_people
+        two_level_out_people_proportion = (two_level_out_people / total_people) * 100
+        print("圈外二度好友数（与研究对象一度好友无关的二度好友）: %d / 占比: %.2f%%"
+              % (two_level_out_people, two_level_out_people_proportion))
+
+        two_level_people = total_people - one_level_people
+        two_level_people_proportion = two_level_people / total_people
+        print("二度好友数: %d / 占比: %.2f%%"
+              % (two_level_people, two_level_people_proportion))
+
+    except Exception:
+        print('ERROR! Unable to fetch data')
+        traceback.print_exc()
+
 
 # 能关联最多一度好友的圈内二度好友（取 10 条排序），能关联谁
 
@@ -331,7 +365,7 @@ if __name__ == '__main__':
     print('4 通过微博用户名查某一度好友能通过圈内二度好友认识的一度好友')
     print('5 所有一度好友信息')
     print('= 统计 =')
-    print('6 总体概况：总人数、一度好友数、圈内二度好友数、二度好友数')
+    print('6 总体概况：总人数、一度好友数、圈内二度好友数、圈外二度好友数、二度好友数')
     print('7 能关联最多一度好友的圈内二度好友（取 10 条排序），能关联谁')
     print('8 一度好友中与其他一度好友互关最多的人（排序）、与圈内二度好友互关最多的人；分别是哪些人')
     print('9 一度好友/圈内二度好友/二度好友中认证情况统计')
@@ -343,7 +377,7 @@ if __name__ == '__main__':
 
     while True:
         value = input('Enter number to select function: ')
-        if value not in ('1', '2', '3', '4', '5'):
+        if value not in ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'):
             value = input('Enter number to select function: ')
 
         if value == '1':
@@ -360,6 +394,9 @@ if __name__ == '__main__':
 
         if value == '5':
             query_all_one_level_friend()
+
+        if value == '6':
+            statistic_person_count()
 
         if value == 'q':
             cur.close()
