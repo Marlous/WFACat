@@ -55,31 +55,31 @@ Weibo friends' net Deep analysis 微博用户好友人际关系网络深度分�
 - 使用 `tomysql`  命令将获得的基本数据存入 MySQL；
 - 使用 `mysqld` 命令查看深度分析的各种结果信息；
 - 使用 `tool` 命令实时查询单个用户信息；
-- 使用 `datac` 命令将获得的基本数据做一些清理。
+- 使用 `datac` 命令将获得的基本数据做一些清理，供 Tableau 软件数据统计可视化。
 
 3. 软件使用效果截图：
 - 主界面、help：  
-![主界面、help](./readme_img/图1.PNG)
+![主界面、help](./README_img/图1.PNG)
 
 - 配置界面：  
-![配置界面](./readme_img/图2.PNG)
+![配置界面](./README_img/图2.PNG)
 
 - 获得基本的数据：  
-![获得基本的数据](./readme_img/图3.PNG)
+![获得基本的数据](./README_img/图3.PNG)
 
 - 数据存储到 csv 文件、MySQL 数据库：  
-![数据存储到 csv 文件、MySQL 数据库](./readme_img/图4.PNG)
-![数据存储到 csv 文件、MySQL 数据库](./readme_img/图5.PNG)
+![数据存储到 csv 文件、MySQL 数据库](./README_img/图4.PNG)
+![数据存储到 csv 文件、MySQL 数据库](./README_img/图5.PNG)
 
 - 查看深度分析的各种结果信息：  
-![查看深度分析的各种结果信息](./readme_img/图6.PNG)
+![查看深度分析的各种结果信息](./README_img/图6.PNG)
 
 - 实时查询单个用户信息：  
-![实时查询单个用户信息](./readme_img/图7.PNG)
+![实时查询单个用户信息](./README_img/图7.PNG)
 
 4. 使用 Gephi 进行数据可视化分析：  
 [使用方法参考我的博文：《用爬虫和 Gephi 研究微博好友二度人脉分析》](https://marlous.github.io/2019/04/06/%E7%94%A8%E7%88%AC%E8%99%AB%E5%92%8C-Gephi-%E7%A0%94%E7%A9%B6%E5%BE%AE%E5%8D%9A%E5%A5%BD%E5%8F%8B%E4%BA%8C%E5%BA%A6%E4%BA%BA%E8%84%89%E5%88%86%E6%9E%90/)  
-![使用 Gephi 进行数据可视化分析](./readme_img/图8.PNG)
+![使用 Gephi 进行数据可视化分析](./README_img/图8.PNG)
 
 5. 使用 Tableau 进行数据统计可视化分析：  
 使用 Tableau 直接链接创建的数据库即可，然后分析。（截图暂略）
