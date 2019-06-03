@@ -3,8 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="0b00de9d-98c5-46fd-a9ae-b836e6e341b7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README_img/图1.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README_img/图2.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WFACatPro/data_analysis/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WFACatPro/data_analysis/data_clear.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WFACatPro/modules/help.py" beforeDir="false" afterPath="$PROJECT_DIR$/WFACatPro/modules/help.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WFACatPro/modules/mysql_query.py" beforeDir="false" afterPath="$PROJECT_DIR$/WFACatPro/modules/mysql_query.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WFACatPro/modules/version.py" beforeDir="false" afterPath="$PROJECT_DIR$/WFACatPro/modules/version.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,8 +23,8 @@
       <file leaf-file-name="mysql_query.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WFACatPro/modules/mysql_query.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="359" lean-forward="true" selection-start-line="359" selection-end-line="359" />
+            <state relative-caret-position="21">
+              <caret line="357" column="37" selection-start-line="357" selection-start-column="37" selection-end-line="357" selection-end-column="37" />
               <folding>
                 <element signature="e#107#123#0" expanded="true" />
                 <element signature="e#247#2934#0" />
@@ -27,7 +32,17 @@
                 <element signature="e#5800#6667#0" />
                 <element signature="e#6755#7946#0" />
                 <element signature="e#7998#11873#0" />
+                <element signature="e#11960#13480#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WFACatPro/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1376">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -75,18 +90,18 @@
         <option value="$PROJECT_DIR$/WFACatPro/__init__.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/analysis_to_csv.py" />
         <option value="$PROJECT_DIR$/WFACatPro/data_analysis/data_clear.py" />
-        <option value="$PROJECT_DIR$/WFACatPro/modules/help.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/tools.py" />
         <option value="$PROJECT_DIR$/WFACatPro/main.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/settings.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/get_data.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/analysis_to_mysql.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/version.py" />
+        <option value="$PROJECT_DIR$/WFACatPro/modules/help.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/mysql_query.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-14" />
     <option name="y" value="13" />
     <option name="width" value="1386" />
@@ -256,19 +271,20 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17642753" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="right" id="R Graphics" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.112737924" side_tool="true" visible="true" weight="0.039808918" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.11346999" side_tool="true" visible="true" weight="0.683121" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.88653004" visible="true" weight="0.683121" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.71496814" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8872621" weight="0.039808918" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.26751593" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -364,13 +380,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WFACatPro/modules/help.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WFACatPro/modules/get_data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
@@ -382,13 +391,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WFACatPro/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
@@ -413,10 +415,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WFACatPro/modules/help.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="26" column="43" lean-forward="true" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WFACatPro/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1376">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/WFACatPro/modules/mysql_query.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="359" lean-forward="true" selection-start-line="359" selection-end-line="359" />
+        <state relative-caret-position="21">
+          <caret line="357" column="37" selection-start-line="357" selection-start-column="37" selection-end-line="357" selection-end-column="37" />
           <folding>
             <element signature="e#107#123#0" expanded="true" />
             <element signature="e#247#2934#0" />
@@ -424,6 +440,7 @@
             <element signature="e#5800#6667#0" />
             <element signature="e#6755#7946#0" />
             <element signature="e#7998#11873#0" />
+            <element signature="e#11960#13480#0" />
           </folding>
         </state>
       </provider>

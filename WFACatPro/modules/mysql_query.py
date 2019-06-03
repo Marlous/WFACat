@@ -324,6 +324,8 @@ def statistic_person_count():
 
 # 能关联最多一度好友的圈内二度好友（取 10 条排序），能关联谁
 
+
+
 # 一度好友中与其他一度好友互关最多的人（排序）、与圈内二度好友互关最多的人；分别是哪些人
 
 # 一度好友/圈内二度好友/二度好友中认证情况统计
@@ -353,8 +355,13 @@ if __name__ == '__main__':
     cur = db.cursor()
 
     cur.execute('SHOW DATABASES;')
-    # 这里列表得到的是一个个元组，每个元组由字符串和字符串后一个逗号构成
-    db_list = list(cur.fetchall())
+    # 这里列表得到的是一个个元组，先遍历列表，再遍历列表中每项的元组
+    db_list_raw = list(cur.fetchall())
+    db_list_handle = []
+    for list_item in db_list_raw:
+        for item in list_item:
+            db_list_handle.append(item)
+    db_list = ', '.join(db_list_handle)
     print(db_list)
     DB_NAME_QUERY = input('Please enter DB name your created: ')
 
