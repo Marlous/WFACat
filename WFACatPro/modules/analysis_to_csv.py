@@ -7,11 +7,11 @@ This is a analysis store data module.
 """
 
 
-from modules import settings
-
 import csv
 import json
 import os
+
+import settings
 
 
 def save_all_person_info_json_file_as_csv():
