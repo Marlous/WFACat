@@ -7,16 +7,17 @@ This is a get_data module.
 """
 
 
-from modules import settings
-
 import json
 import os
-import shutil
 import random
+import shutil
 import time
-import requests
 import urllib
 from urllib.parse import urlparse
+
+import requests
+
+import settings
 
 
 # 创建一个列表，用来保存已经下载过的人的好友信息

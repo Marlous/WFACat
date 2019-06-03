@@ -5,10 +5,12 @@ WFACatPro.main
 ~~~~~~~~~~~~~~~~~~~
 This is a main module.
 """
-from modules import version
+
 
 import json
 import os
+
+from modules import version
 
 
 if __name__ == '__main__':
@@ -16,7 +18,8 @@ if __name__ == '__main__':
     print('You could use \'help\' command to get help!')
     print('If appear Python ERROR, please config correct configuration!')
     print('Warning! If you want store data to MySQL, you must set MySQL default charset is utf8mb4 first!!!')
-    print('Change MySQL chartset: find my.ini, change [mysql] and [mysqld], then change to utf8mb4, restart service.')
+    print(
+        'Change MySQL chartset: find my.ini, change [mysql] and [mysqld], then change to utf8mb4, restart service.')
     print('')
 
     # 创建存放数据的文件夹
@@ -76,18 +79,18 @@ if __name__ == '__main__':
     while True:
         cmd = input('> ')
         if cmd == 'help':
-            os.system(this_file_path + 'modules/help.py')
+            os.system("\"" + this_file_path + "modules/help.py\"")
         elif cmd == 'conf':
-            os.system(this_file_path + 'modules/settings.py')
+            os.system("\"" + this_file_path + "modules/settings.py\"")
         elif cmd == 'get':
-            os.system(this_file_path + 'modules/get_data.py')
+            os.system("\"" + this_file_path + "modules/get_data.py\"")
         elif cmd == 'tocsv':
-            os.system(this_file_path + 'modules/analysis_to_csv.py')
+            os.system("\"" + this_file_path + "modules/analysis_to_csv.py\"")
         elif cmd == 'tomysql':
-            os.system(this_file_path + 'modules/analysis_to_mysql.py')
+            os.system("\"" + this_file_path + "modules/analysis_to_mysql.py\"")
         elif cmd == 'mysqld':
-            os.system(this_file_path + 'modules/mysql_query.py')
+            os.system("\"" + this_file_path + "modules/mysql_query.py\"")
         elif cmd == 'tool':
-            os.system(this_file_path + 'modules/tools.py')
+            os.system("\"" + this_file_path + "modules/tools.py\"")
         elif cmd == 'quit':
             exit('Bye ~')

@@ -7,16 +7,17 @@ This is a tools module.
 """
 
 
-from modules import settings
-
 import json
 import os
-import shutil
 import random
+import shutil
 import time
-import requests
 import urllib
 from urllib.parse import urlparse
+
+import requests
+
+import settings
 
 
 def get_person_uid(person_name_params):

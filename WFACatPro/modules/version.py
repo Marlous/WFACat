@@ -12,10 +12,10 @@ def print_version_info():
     print('Title: ' + 'WFACat: weibo friends deep analysis')
     print('Description: ' + 'Python friends\' network analysis for every one.')
     print('URL: ' + 'https://github.com/Marlous/WFACat')
-    print('Version: ' + 'v2.2')
+    print('Version: ' + 'v3.0')
     print('Author: ' + 'Marlous')
     print('Author E-mail: ' + 'Goonecat@foxmail.com')
-    print('License: ' + 'Apache v2.0 License')
+    print('License: ' + 'GPL v2.0 License')
     print('Copyright: ' + 'Copyright 2019 Marlous')
     print('####################################################################')
 

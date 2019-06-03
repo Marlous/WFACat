@@ -7,13 +7,14 @@ This is a analysis to mysql module.
 """
 
 
-from modules import settings
-
-import os
 import json
+import os
 import re
-import pymysql
 import warnings
+
+import pymysql
+
+import settings
 
 
 def judge_and_create_db(db_name_params):
