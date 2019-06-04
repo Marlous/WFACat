@@ -322,11 +322,38 @@ def statistic_person_count():
         traceback.print_exc()
 
 
-# 能关联最多一度好友的圈内二度好友（取 10 条排序），能关联谁
+# 一度好友中与其他一度好友互关最多的人（排序）、与圈内二度好友互关最多的人
+def mutual_follow_count_sort():
+    try:
+        print("一度好友中与其他一度好友互关最多的人:")
+        cur.execute("SELECT uid, name, connect_to_my_friends_count FROM %s.peopleinfo WHERE rel_me = \'1\' "
+                    "ORDER BY connect_to_my_friends_count DESC;"
+                    % (DB_NAME_QUERY))
+        result = cur.fetchall()
+        for row in result:
+            uid = row[0]
+            name = row[1]
+            connect_to_my_friends_count = row[2]
+            print("uid: %s / name: %s / connect to one level count: %d"
+                  % (str(uid), str(name), connect_to_my_friends_count))
 
+        print("----------------------------------")
+        print("一度好友中与其他圈内二度好友互关最多的人:")
+        cur.execute("SELECT uid, name, connect_to_two_level_friends_count FROM %s.peopleinfo WHERE rel_me = \'1\' "
+                    "ORDER BY connect_to_two_level_friends_count DESC;"
+                    % (DB_NAME_QUERY))
+        result = cur.fetchall()
+        for row in result:
+            uid = row[0]
+            name = row[1]
+            connect_to_two_level_friends_count = row[2]
+            print("uid: %s / name: %s / connect to two level count: %d"
+                  % (str(uid), str(name), connect_to_two_level_friends_count))
 
+    except Exception:
+        print('ERROR! Unable to fetch data')
+        traceback.print_exc()
 
-# 一度好友中与其他一度好友互关最多的人（排序）、与圈内二度好友互关最多的人；分别是哪些人
 
 # 一度好友/圈内二度好友/二度好友中认证情况统计
 
@@ -373,18 +400,17 @@ if __name__ == '__main__':
     print('5 所有一度好友信息')
     print('= 统计 =')
     print('6 总体概况：总人数、一度好友数、圈内二度好友数、圈外二度好友数、二度好友数')
-    print('7 能关联最多一度好友的圈内二度好友（取 10 条排序），能关联谁')
-    print('8 一度好友中与其他一度好友互关最多的人（排序）、与圈内二度好友互关最多的人；分别是哪些人')
-    print('9 一度好友/圈内二度好友/二度好友中认证情况统计')
-    print('10 一度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、互关好友总数、客户端')
-    print('11 圈内二度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、互关好友总数、客户端')
-    print('12 二度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、互关好友总数、客户端')
+    print('7 一度好友中与其他一度好友互关最多的人（排序）、与圈内二度好友互关最多的人')
+    print('8 一度好友/圈内二度好友/二度好友中认证情况统计')
+    print('9 一度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、互关好友总数、客户端')
+    print('10 圈内二度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、互关好友总数、客户端')
+    print('11 二度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、互关好友总数、客户端')
     print('= 推测 =')
     print('q quit mysql query module')
 
     while True:
         value = input('Enter number to select function: ')
-        if value not in ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'):
+        if value not in ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'):
             value = input('Enter number to select function: ')
 
         if value == '1':
@@ -404,6 +430,9 @@ if __name__ == '__main__':
 
         if value == '6':
             statistic_person_count()
+
+        if value == '7':
+            mutual_follow_count_sort()
 
         if value == 'q':
             cur.close()
