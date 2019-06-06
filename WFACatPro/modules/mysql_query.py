@@ -356,10 +356,32 @@ def mutual_follow_count_sort():
 
 
 # 一度好友/圈内二度好友/二度好友中认证情况统计
+def statistic_verified():
+    try:
+        cur.execute("SELECT COUNT(verified = \'True\') FROM %s.peopleinfo WHERE rel_me = \'1\' " % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        print("一度好友认证数量：%d" % (row[0]))
+
+        cur.execute("SELECT COUNT(verified = \'True\') FROM %s.peopleinfo WHERE rel_me = \'2\' " % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        print("圈内二度好友认证数量：%d" % (row[0]))
+
+        cur.execute("SELECT COUNT(verified = \'True\') FROM %s.peopleinfo WHERE rel_me = \'2.1\' " % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        print("二度好友认证数量：%d" % (row[0]))
+
+    except Exception:
+        print('ERROR! Unable to fetch data')
+        traceback.print_exc()
+
 
 # 一度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、互关好友总数、客户端
 
+
+
 # 圈内二度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、互关好友总数、客户端
+
+
 
 # 二度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、互关好友总数、客户端
 
@@ -433,6 +455,9 @@ if __name__ == '__main__':
 
         if value == '7':
             mutual_follow_count_sort()
+
+        if value == '8':
+            statistic_verified()
 
         if value == 'q':
             cur.close()

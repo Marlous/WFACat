@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b00de9d-98c5-46fd-a9ae-b836e6e341b7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WFACatPro/modules/mysql_query.py" beforeDir="false" afterPath="$PROJECT_DIR$/WFACatPro/modules/mysql_query.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,8 +16,8 @@
       <file leaf-file-name="mysql_query.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WFACatPro/modules/mysql_query.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="355" lean-forward="true" selection-start-line="355" selection-end-line="355" />
+            <state relative-caret-position="-82">
+              <caret line="356" lean-forward="true" selection-start-line="356" selection-end-line="356" />
               <folding>
                 <element signature="e#107#123#0" expanded="true" />
                 <element signature="e#247#2934#0" />
@@ -28,7 +26,7 @@
                 <element signature="e#6755#7946#0" />
                 <element signature="e#7998#11873#0" />
                 <element signature="e#11960#13480#0" />
-                <element signature="e#13558#13677#0" />
+                <element signature="e#13558#14849#0" />
               </folding>
             </state>
           </provider>
@@ -258,19 +256,20 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17642753" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17642753" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="right" id="R Graphics" order="3" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="7" sideWeight="0.11420205" side_tool="true" visible="true" weight="0.09235669" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.885798" weight="0.33598727" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.11493412" side_tool="true" visible="true" weight="0.21337579" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.71496814" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8850659" weight="0.21337579" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.26751593" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -409,8 +408,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WFACatPro/modules/mysql_query.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="355" lean-forward="true" selection-start-line="355" selection-end-line="355" />
+        <state relative-caret-position="-82">
+          <caret line="356" lean-forward="true" selection-start-line="356" selection-end-line="356" />
           <folding>
             <element signature="e#107#123#0" expanded="true" />
             <element signature="e#247#2934#0" />
@@ -419,7 +418,7 @@
             <element signature="e#6755#7946#0" />
             <element signature="e#7998#11873#0" />
             <element signature="e#11960#13480#0" />
-            <element signature="e#13558#13677#0" />
+            <element signature="e#13558#14849#0" />
           </folding>
         </state>
       </provider>
