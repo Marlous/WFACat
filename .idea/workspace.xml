@@ -16,8 +16,8 @@
       <file leaf-file-name="mysql_query.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WFACatPro/modules/mysql_query.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-273">
-              <caret line="702" lean-forward="true" selection-start-line="702" selection-end-line="702" />
+            <state relative-caret-position="441">
+              <caret line="736" lean-forward="true" selection-start-line="736" selection-end-line="736" />
               <folding>
                 <element signature="e#107#123#0" expanded="true" />
                 <element signature="e#247#2934#0" />
@@ -27,11 +27,6 @@
                 <element signature="e#7998#11873#0" />
                 <element signature="e#11960#13480#0" />
                 <element signature="e#13558#14849#0" />
-                <element signature="e#14908#15571#0" />
-                <element signature="e#15657#19216#0" />
-                <element signature="e#19361#22977#0" />
-                <element signature="e#22691#25958#0" />
-                <element signature="e#26050#26617#0" />
               </folding>
             </state>
           </provider>
@@ -41,8 +36,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="273">
-                <caret line="82" column="31" selection-start-line="82" selection-start-column="31" selection-end-line="82" selection-end-column="31" />
+              <first_editor relative-caret-position="206">
+                <caret line="79" column="44" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="44" />
               </first_editor>
               <second_editor />
             </state>
@@ -301,10 +296,10 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="right" id="R Graphics" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.22547585" side_tool="true" visible="true" weight="0.10350318" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.22547585" side_tool="true" visible="true" weight="0.23248407" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.71496814" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.77452415" visible="true" weight="0.10350318" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.77452415" visible="true" weight="0.23248407" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.26751593" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -468,8 +463,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WFACatPro/modules/mysql_query.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-273">
-          <caret line="702" lean-forward="true" selection-start-line="702" selection-end-line="702" />
+        <state relative-caret-position="441">
+          <caret line="736" lean-forward="true" selection-start-line="736" selection-end-line="736" />
           <folding>
             <element signature="e#107#123#0" expanded="true" />
             <element signature="e#247#2934#0" />
@@ -479,11 +474,6 @@
             <element signature="e#7998#11873#0" />
             <element signature="e#11960#13480#0" />
             <element signature="e#13558#14849#0" />
-            <element signature="e#14908#15571#0" />
-            <element signature="e#15657#19216#0" />
-            <element signature="e#19361#22977#0" />
-            <element signature="e#22691#25958#0" />
-            <element signature="e#26050#26617#0" />
           </folding>
         </state>
       </provider>
@@ -491,8 +481,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="273">
-            <caret line="82" column="31" selection-start-line="82" selection-start-column="31" selection-end-line="82" selection-end-column="31" />
+          <first_editor relative-caret-position="206">
+            <caret line="79" column="44" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="44" />
           </first_editor>
           <second_editor />
         </state>

@@ -77,10 +77,11 @@ Weibo friends' net Deep analysis 微博用户好友人际关系网络深度分�
 
 4. 使用 Gephi 进行数据可视化分析：  
 [使用方法参考我的博文：《用爬虫和 Gephi 研究微博好友二度人脉分析》](https://marlous.github.io/2019/04/06/%E7%94%A8%E7%88%AC%E8%99%AB%E5%92%8C-Gephi-%E7%A0%94%E7%A9%B6%E5%BE%AE%E5%8D%9A%E5%A5%BD%E5%8F%8B%E4%BA%8C%E5%BA%A6%E4%BA%BA%E8%84%89%E5%88%86%E6%9E%90/)  
+![使用 Gephi 进行数据可视化分析](./README_img/图8-1.PNG)
 ![使用 Gephi 进行数据可视化分析](./README_img/图8.PNG)
 
 5. 使用 Tableau 进行数据统计可视化分析：  
-使用 Tableau 直接链接创建的数据库即可，然后分析。  
+使用 Tableau 直接连接创建的数据库即可，然后分析。  
 [使用方法参考我的博文：《用 Tableau 数据可视化分析微博人际关系数据（基于 WFACat 项目）》](https://marlous.github.io/2019/06/08/%E7%94%A8-Tableau-%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%BE%AE%E5%8D%9A%E4%BA%BA%E9%99%85%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%EF%BC%88%E5%9F%BA%E4%BA%8E-WFACat-%E9%A1%B9%E7%9B%AE%EF%BC%89/)  
 ![使用 Gephi 进行数据可视化分析](./README_img/图9.PNG)
 
