@@ -655,6 +655,31 @@ def statistic_three_level():
         print('ERROR! Unable to fetch data')
         traceback.print_exc()
 
+
+# 所有用户微博创建时间统计
+def statistic_created():
+    try:
+        cur.execute("SELECT created_at FROM %s.peopleinfo" % (DB_NAME_QUERY))
+        result = cur.fetchall()
+
+        created_at_dict = {}
+
+        for row in result:
+            if str(row[0])[26:] in created_at_dict.keys():
+                created_at_dict[str(row[0])[26:]] = created_at_dict[str(row[0])[26:]] + 1
+            else:
+                created_at_dict[str(row[0])[26:]] = 1
+
+        created_at_sorted_list = sorted(created_at_dict, key=created_at_dict.get, reverse=True)
+
+        for item in created_at_sorted_list:
+            print("创建时间：%s 数量：%d" % (str(item), created_at_dict[item]))
+
+    except Exception:
+        print('ERROR! Unable to fetch data')
+        traceback.print_exc()
+
+
 """
 推测
 """
@@ -728,8 +753,9 @@ if __name__ == '__main__':
     print('9 一度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、互关好友总数、客户端')
     print('10 圈内二度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、客户端')
     print('11 二度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、客户端')
+    print('12 所有用户微博创建时间统计')
     print('= 推测 =')
-    print('12 可能的出生成长、久居的城市，按可能性排序。/ '
+    print('13 可能的出生成长、久居的城市，按可能性排序。/ '
           '研究对象年龄较小的，排名靠最前的为出生成长的城市可能性最大；'
           '研究对象年龄较大的，排名靠最前的为久居的城市可能性最大）')
     print('= 退出 =')
@@ -774,6 +800,9 @@ if __name__ == '__main__':
             statistic_three_level()
 
         if value == '12':
+            statistic_created()
+
+        if value == '13':
             location_probably()
 
         if value == 'q':
