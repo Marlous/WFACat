@@ -541,6 +541,7 @@ if __name__ == '__main__':
                     " ( `uid` CHAR(10) PRIMARY KEY, `by_friends` VARCHAR(5000) NULL, `by_friends_count` INT NULL" + ");"
                 )
                 db.commit()
+
                 cur.execute(
                     "CREATE TABLE IF NOT EXISTS " + DB_NAME +
                     ".u" + temp_person +
@@ -554,6 +555,7 @@ if __name__ == '__main__':
                             " VALUES ('" + temp_person + "', '" + temp_content +
                             "', '" + str(len(two_level_friends_inter_have)) + "');")
                 db.commit()
+
                 cur.execute("INSERT INTO " + DB_NAME +
                             ".u" + temp_person +
                             " VALUES ('" + person + "', '" + temp_content +
@@ -576,3 +578,9 @@ if __name__ == '__main__':
     write_all_person_info_in_mysql(DB_NAME)
     print('Congratulations! All task completed!')
     print('You could use \'detail\' to get more info about your weibo user!')
+
+    """
+    修复 bug，详见 fixed 模块
+    """
+    this_file_path = os.path.abspath(__file__)[:-17]
+    os.system("\"" + this_file_path + "fixed.py\"")
