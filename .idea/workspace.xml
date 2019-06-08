@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b00de9d-98c5-46fd-a9ae-b836e6e341b7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WFACatPro/modules/analysis_to_mysql.py" beforeDir="false" afterPath="$PROJECT_DIR$/WFACatPro/modules/analysis_to_mysql.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WFACatPro/modules/version.py" beforeDir="false" afterPath="$PROJECT_DIR$/WFACatPro/modules/version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,10 +13,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="mysql_query.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mysql_query.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WFACatPro/modules/mysql_query.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-399">
+            <state relative-caret-position="-273">
               <caret line="702" lean-forward="true" selection-start-line="702" selection-end-line="702" />
               <folding>
                 <element signature="e#107#123#0" expanded="true" />
@@ -35,6 +33,18 @@
                 <element signature="e#22691#25958#0" />
                 <element signature="e#26050#26617#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="273">
+                <caret line="82" column="31" selection-start-line="82" selection-start-column="31" selection-end-line="82" selection-end-column="31" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -86,12 +96,12 @@
         <option value="$PROJECT_DIR$/WFACatPro/modules/settings.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/get_data.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/help.py" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/version.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/mysql_query.py" />
         <option value="$PROJECT_DIR$/WFACatPro/main.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/analysis_to_mysql.py" />
         <option value="$PROJECT_DIR$/WFACatPro/modules/fixed.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -415,16 +425,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-630">
-            <caret column="8" lean-forward="true" selection-start-column="8" selection-end-column="8" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WFACatPro/modules/version.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
@@ -468,7 +468,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WFACatPro/modules/mysql_query.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-399">
+        <state relative-caret-position="-273">
           <caret line="702" lean-forward="true" selection-start-line="702" selection-end-line="702" />
           <folding>
             <element signature="e#107#123#0" expanded="true" />
@@ -485,6 +485,16 @@
             <element signature="e#22691#25958#0" />
             <element signature="e#26050#26617#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="273">
+            <caret line="82" column="31" selection-start-line="82" selection-start-column="31" selection-end-line="82" selection-end-column="31" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
