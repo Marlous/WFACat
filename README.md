@@ -55,6 +55,8 @@ Weibo friends' net Deep analysis 微博用户好友人际关系网络深度分�
 - 使用 `tomysql`  命令将获得的基本数据存入 MySQL；
 - 使用 `mysqld` 命令查看深度分析的各种结果信息；
 - 使用 `tool` 命令实时查询单个用户信息。
+- 使用 Gephi 软件通过之前生成的 csv 文件来数据可视化分析人际关系网络。
+- 使用 Tableau 软件来数据可视化分析详细信息。
 
 3. 软件使用效果截图：
 - 主界面、help：  
