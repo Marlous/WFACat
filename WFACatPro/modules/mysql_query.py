@@ -322,25 +322,397 @@ def statistic_person_count():
         traceback.print_exc()
 
 
-# 能关联最多一度好友的圈内二度好友（取 10 条排序），能关联谁
+# 一度好友中与其他一度好友互关最多的人（排序）、与圈内二度好友互关最多的人
+def mutual_follow_count_sort():
+    try:
+        print("一度好友中与其他一度好友互关最多的人:")
+        cur.execute("SELECT uid, name, connect_to_my_friends_count FROM %s.peopleinfo WHERE rel_me = \'1\' "
+                    "ORDER BY connect_to_my_friends_count DESC;"
+                    % (DB_NAME_QUERY))
+        result = cur.fetchall()
+        for row in result:
+            uid = row[0]
+            name = row[1]
+            connect_to_my_friends_count = row[2]
+            print("uid: %s / name: %s / connect to one level count: %d"
+                  % (str(uid), str(name), connect_to_my_friends_count))
 
+        print("----------------------------------")
+        print("一度好友中与其他圈内二度好友互关最多的人:")
+        cur.execute("SELECT uid, name, connect_to_two_level_friends_count FROM %s.peopleinfo WHERE rel_me = \'1\' "
+                    "ORDER BY connect_to_two_level_friends_count DESC;"
+                    % (DB_NAME_QUERY))
+        result = cur.fetchall()
+        for row in result:
+            uid = row[0]
+            name = row[1]
+            connect_to_two_level_friends_count = row[2]
+            print("uid: %s / name: %s / connect to two level count: %d"
+                  % (str(uid), str(name), connect_to_two_level_friends_count))
 
+    except Exception:
+        print('ERROR! Unable to fetch data')
+        traceback.print_exc()
 
-# 一度好友中与其他一度好友互关最多的人（排序）、与圈内二度好友互关最多的人；分别是哪些人
 
 # 一度好友/圈内二度好友/二度好友中认证情况统计
+def statistic_verified():
+    try:
+        cur.execute("SELECT COUNT(verified = \'True\') FROM %s.peopleinfo WHERE rel_me = \'1\' " % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        print("一度好友认证数量：%d" % (row[0]))
 
-# 一度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、互关好友总数、客户端
+        cur.execute("SELECT COUNT(verified = \'True\') FROM %s.peopleinfo WHERE rel_me = \'2\' " % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        print("圈内二度好友认证数量：%d" % (row[0]))
 
-# 圈内二度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、互关好友总数、客户端
+        cur.execute("SELECT COUNT(verified = \'True\') FROM %s.peopleinfo WHERE rel_me = \'2.1\' " % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        print("圈外二度好友认证数量：%d" % (row[0]))
+
+    except Exception:
+        print('ERROR! Unable to fetch data')
+        traceback.print_exc()
+
+
+# 一度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、客户端
+def statistic_one_level():
+    try:
+        cur.execute("SELECT * FROM %s.peopleinfo WHERE rel_me = \'1\' " % (DB_NAME_QUERY))
+        result = cur.fetchall()
+
+        location_dict = {}
+        gender_dict = {}
+        created_dict = {}
+        client_dict = {}
+
+        for row in result:
+            # 地理位置
+            if row[9] in location_dict.keys():
+                location_dict[row[9]] = location_dict[row[9]] + 1
+            else:
+                location_dict[row[9]] = 1
+
+            # 性别
+            if row[15] in gender_dict.keys():
+                gender_dict[row[15]] = int(gender_dict[row[15]]) + 1
+            else:
+                gender_dict[row[15]] = 1
+
+            # 微博创建时间
+            created = row[21][-4:]
+            if created in created_dict.keys():
+                created_dict[created] = int(created_dict[created]) + 1
+            else:
+                created_dict[created] = 1
+
+            # 客户端
+            if row[24] is not None:
+                if row[24] in client_dict.keys():
+                    client_dict[row[24]] = int(client_dict[row[24]]) + 1
+                else:
+                    client_dict[row[24]] = 1
+
+        location_top_key = max(location_dict, key=lambda x: location_dict[x])
+        created_top_key = max(created_dict, key=lambda x: created_dict[x])
+        client_top_key = max(client_dict, key=lambda x: client_dict[x])
+
+        # 关注数
+        cur.execute("SELECT name, followers_count FROM %s.peopleinfo WHERE rel_me = \'1\' "
+                    "ORDER BY followers_count DESC;"
+                    % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        name_followers_count = row[0]
+        followers_count = row[1]
+
+        # 粉丝数
+        cur.execute("SELECT name, friends_count FROM %s.peopleinfo WHERE rel_me = \'1\' "
+                    "ORDER BY friends_count DESC;"
+                    % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        name_friends_count = row[0]
+        friends_count = row[1]
+
+        # 状态数
+        cur.execute("SELECT name, statuses_count FROM %s.peopleinfo WHERE rel_me = \'1\' "
+                    "ORDER BY statuses_count DESC;"
+                    % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        name_statuses_count = row[0]
+        statuses_count = row[1]
+
+        # 点赞数
+        cur.execute("SELECT name, favourites_count FROM %s.peopleinfo WHERE rel_me = \'1\' "
+                    "ORDER BY favourites_count DESC;"
+                    % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        name_favourites_count = row[0]
+        favourites_count = row[1]
+
+        # 互关好友总数
+        cur.execute("SELECT name, total_number FROM %s.peopleinfo WHERE rel_me = \'1\' "
+                    "ORDER BY total_number DESC;"
+                    % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        name_total_number = row[0]
+        total_number = row[1]
+
+        print("------ 一度好友 -------")
+        print("地理位置最多的：%s / 性别统计：男 %d 人，女 %d 人 / "
+              "关注数最多的：%s %d / 粉丝数最多的：%s %d / "
+              "状态数最多的：%s %d / 点赞数最多的：%s %d / "
+              "微博创建时间统计：%s / "
+              "互关好友总数最多的：%s %d / 客户端最多的：%s"
+              % (str(location_top_key), int(gender_dict['f']), int(gender_dict['m']),
+                 str(name_followers_count), int(followers_count), str(name_friends_count), int(friends_count),
+                 str(name_statuses_count), int(statuses_count), str(name_favourites_count), int(favourites_count),
+                 str(created_top_key),
+                 str(name_total_number), int(total_number), str(client_top_key)))
+
+    except Exception:
+        print('ERROR! Unable to fetch data')
+        traceback.print_exc()
+
+
+# 圈内二度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、客户端
+def statistic_inner_two_level():
+    try:
+        cur.execute("SELECT * FROM %s.peopleinfo WHERE rel_me = \'2\' " % (DB_NAME_QUERY))
+        result = cur.fetchall()
+
+        location_dict = {}
+        gender_dict = {}
+        created_dict = {}
+        client_dict = {}
+
+        for row in result:
+            # 地理位置
+            if row[9] in location_dict.keys():
+                location_dict[row[9]] = location_dict[row[9]] + 1
+            else:
+                location_dict[row[9]] = 1
+
+            # 性别
+            if row[15] in gender_dict.keys():
+                gender_dict[row[15]] = int(gender_dict[row[15]]) + 1
+            else:
+                gender_dict[row[15]] = 1
+
+            # 微博创建时间
+            created = row[21][-4:]
+            if created in created_dict.keys():
+                created_dict[created] = int(created_dict[created]) + 1
+            else:
+                created_dict[created] = 1
+
+            # 客户端
+            if row[24] is not None:
+                if row[24] in client_dict.keys():
+                    client_dict[row[24]] = int(client_dict[row[24]]) + 1
+                else:
+                    client_dict[row[24]] = 1
+
+        location_top_key = max(location_dict, key=lambda x: location_dict[x])
+        created_top_key = max(created_dict, key=lambda x: created_dict[x])
+        client_top_key = max(client_dict, key=lambda x: client_dict[x])
+
+        # 关注数
+        cur.execute("SELECT name, followers_count FROM %s.peopleinfo WHERE rel_me = \'2\' "
+                    "ORDER BY followers_count DESC;"
+                    % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        name_followers_count = row[0]
+        followers_count = row[1]
+
+        # 粉丝数
+        cur.execute("SELECT name, friends_count FROM %s.peopleinfo WHERE rel_me = \'2\' "
+                    "ORDER BY friends_count DESC;"
+                    % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        name_friends_count = row[0]
+        friends_count = row[1]
+
+        # 状态数
+        cur.execute("SELECT name, statuses_count FROM %s.peopleinfo WHERE rel_me = \'2\' "
+                    "ORDER BY statuses_count DESC;"
+                    % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        name_statuses_count = row[0]
+        statuses_count = row[1]
+
+        # 点赞数
+        cur.execute("SELECT name, favourites_count FROM %s.peopleinfo WHERE rel_me = \'2\' "
+                    "ORDER BY favourites_count DESC;"
+                    % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        name_favourites_count = row[0]
+        favourites_count = row[1]
+
+        print("------ 圈内二度好友 -------")
+        print("地理位置最多的：%s / 性别统计：男 %d 人，女 %d 人 / "
+              "关注数最多的：%s %d / 粉丝数最多的：%s %d / "
+              "状态数最多的：%s %d / 点赞数最多的：%s %d / "
+              "微博创建时间统计：%s / "
+              "客户端最多的：%s"
+              % (str(location_top_key), int(gender_dict['f']), int(gender_dict['m']),
+                 str(name_followers_count), int(followers_count), str(name_friends_count), int(friends_count),
+                 str(name_statuses_count), int(statuses_count), str(name_favourites_count), int(favourites_count),
+                 str(created_top_key),
+                 str(client_top_key)))
+
+    except Exception:
+        print('ERROR! Unable to fetch data')
+        traceback.print_exc()
+
 
 # 二度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、互关好友总数、客户端
+def statistic_three_level():
+    try:
+        cur.execute("SELECT * FROM %s.peopleinfo WHERE rel_me = \'2.1\' " % (DB_NAME_QUERY))
+        result = cur.fetchall()
+
+        location_dict = {}
+        gender_dict = {}
+        created_dict = {}
+        client_dict = {}
+
+        for row in result:
+            # 地理位置
+            if row[9] in location_dict.keys():
+                location_dict[row[9]] = location_dict[row[9]] + 1
+            else:
+                location_dict[row[9]] = 1
+
+            # 性别
+            if row[15] in gender_dict.keys():
+                gender_dict[row[15]] = int(gender_dict[row[15]]) + 1
+            else:
+                gender_dict[row[15]] = 1
+
+            # 微博创建时间
+            created = row[21][-4:]
+            if created in created_dict.keys():
+                created_dict[created] = int(created_dict[created]) + 1
+            else:
+                created_dict[created] = 1
+
+            # 客户端
+            if row[24] is not None:
+                if row[24] in client_dict.keys():
+                    client_dict[row[24]] = int(client_dict[row[24]]) + 1
+                else:
+                    client_dict[row[24]] = 1
+
+        location_top_key = max(location_dict, key=lambda x: location_dict[x])
+        created_top_key = max(created_dict, key=lambda x: created_dict[x])
+        client_top_key = max(client_dict, key=lambda x: client_dict[x])
+
+        # 关注数
+        cur.execute("SELECT name, followers_count FROM %s.peopleinfo WHERE rel_me = \'2.1\' "
+                    "ORDER BY followers_count DESC;"
+                    % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        name_followers_count = row[0]
+        followers_count = row[1]
+
+        # 粉丝数
+        cur.execute("SELECT name, friends_count FROM %s.peopleinfo WHERE rel_me = \'2.1\' "
+                    "ORDER BY friends_count DESC;"
+                    % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        name_friends_count = row[0]
+        friends_count = row[1]
+
+        # 状态数
+        cur.execute("SELECT name, statuses_count FROM %s.peopleinfo WHERE rel_me = \'2.1\' "
+                    "ORDER BY statuses_count DESC;"
+                    % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        name_statuses_count = row[0]
+        statuses_count = row[1]
+
+        # 点赞数
+        cur.execute("SELECT name, favourites_count FROM %s.peopleinfo WHERE rel_me = \'2.1\' "
+                    "ORDER BY favourites_count DESC;"
+                    % (DB_NAME_QUERY))
+        row = cur.fetchone()
+        name_favourites_count = row[0]
+        favourites_count = row[1]
+
+        print("------ 二度好友 -------")
+        print("地理位置最多的：%s / 性别统计：男 %d 人，女 %d 人 / "
+              "关注数最多的：%s %d / 粉丝数最多的：%s %d / "
+              "状态数最多的：%s %d / 点赞数最多的：%s %d / "
+              "微博创建时间统计：%s / "
+              "客户端最多的：%s"
+              % (str(location_top_key), int(gender_dict['f']), int(gender_dict['m']),
+                 str(name_followers_count), int(followers_count), str(name_friends_count), int(friends_count),
+                 str(name_statuses_count), int(statuses_count), str(name_favourites_count), int(favourites_count),
+                 str(created_top_key),
+                 str(client_top_key)))
+
+    except Exception:
+        print('ERROR! Unable to fetch data')
+        traceback.print_exc()
+
+
+# 所有用户微博创建时间统计
+def statistic_created():
+    try:
+        cur.execute("SELECT created_at FROM %s.peopleinfo" % (DB_NAME_QUERY))
+        result = cur.fetchall()
+
+        created_at_dict = {}
+
+        for row in result:
+            if str(row[0])[26:] in created_at_dict.keys():
+                created_at_dict[str(row[0])[26:]] = created_at_dict[str(row[0])[26:]] + 1
+            else:
+                created_at_dict[str(row[0])[26:]] = 1
+
+        created_at_sorted_list = sorted(created_at_dict, key=created_at_dict.get, reverse=True)
+
+        for item in created_at_sorted_list:
+            print("创建时间：%s 数量：%d" % (str(item), created_at_dict[item]))
+
+    except Exception:
+        print('ERROR! Unable to fetch data')
+        traceback.print_exc()
 
 
 """
 推测
 """
-# 某微博用户（研究对象）成长的城市、呆过的城市
+# 某微博用户（研究对象）成长的城市、久居的城市
+def location_probably():
+    try:
+        cur.execute("SELECT * FROM %s.peopleinfo WHERE rel_me = \'1\' " % (DB_NAME_QUERY))
+        result = cur.fetchall()
+
+        location_dict = {}
+
+        for row in result:
+            # 地理位置
+            if row[9] in location_dict.keys():
+                location_dict[row[9]] = location_dict[row[9]] + 1
+            else:
+                location_dict[row[9]] = 1
+
+        location_list_sorted = sorted(location_dict, key=location_dict.get, reverse=True)
+
+        location_list = []
+        count = 0
+        for item in location_list_sorted:
+            location_list.append(item)
+            count = count + 1
+            if count == 7:
+                break
+                
+        print("可能的出生成长、久居的城市，按可能性排序: %s" % (', '.join(location_list)))
+
+    except Exception:
+        print('ERROR! Unable to fetch data')
+        traceback.print_exc()
 
 
 if __name__ == '__main__':
@@ -365,6 +737,9 @@ if __name__ == '__main__':
     print(db_list)
     DB_NAME_QUERY = input('Please enter DB name your created: ')
 
+    print('= 注释 =')
+    print('分为一度好友（直接与研究对象互关的）；'
+          '圈内二度好友（二度好友中能关联至少互关两个一度好友的）；圈外二度好友（二度好友中只互关一个一度好友的）')
     print('= 查询 =')
     print('1 通过微博用户名查某用户基本信息')
     print('2 通过 uid 查某用户基本信息')
@@ -373,13 +748,17 @@ if __name__ == '__main__':
     print('5 所有一度好友信息')
     print('= 统计 =')
     print('6 总体概况：总人数、一度好友数、圈内二度好友数、圈外二度好友数、二度好友数')
-    print('7 能关联最多一度好友的圈内二度好友（取 10 条排序），能关联谁')
-    print('8 一度好友中与其他一度好友互关最多的人（排序）、与圈内二度好友互关最多的人；分别是哪些人')
-    print('9 一度好友/圈内二度好友/二度好友中认证情况统计')
-    print('10 一度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、互关好友总数、客户端')
-    print('11 圈内二度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、互关好友总数、客户端')
-    print('12 二度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、互关好友总数、客户端')
+    print('7 一度好友中与其他一度好友互关最多的人（排序）、与圈内二度好友互关最多的人')
+    print('8 一度好友/圈内二度好友/二度好友中认证情况统计')
+    print('9 一度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、互关好友总数、客户端')
+    print('10 圈内二度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、客户端')
+    print('11 二度好友地理位置统计、性别统计、关注数、粉丝数、状态数、点赞数、微博创建时间、客户端')
+    print('12 所有用户微博创建时间统计')
     print('= 推测 =')
+    print('13 可能的出生成长、久居的城市，按可能性排序。/ '
+          '研究对象年龄较小的，排名靠最前的为出生成长的城市可能性最大；'
+          '研究对象年龄较大的，排名靠最前的为久居的城市可能性最大）')
+    print('= 退出 =')
     print('q quit mysql query module')
 
     while True:
@@ -404,6 +783,27 @@ if __name__ == '__main__':
 
         if value == '6':
             statistic_person_count()
+
+        if value == '7':
+            mutual_follow_count_sort()
+
+        if value == '8':
+            statistic_verified()
+
+        if value == '9':
+            statistic_one_level()
+
+        if value == '10':
+            statistic_inner_two_level()
+
+        if value == '11':
+            statistic_three_level()
+
+        if value == '12':
+            statistic_created()
+
+        if value == '13':
+            location_probably()
 
         if value == 'q':
             cur.close()
