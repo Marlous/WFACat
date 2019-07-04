@@ -71,7 +71,6 @@ def create_db_table(db_name_params):
 
     cur.execute('USE ' + db_name_params + ';')
 
-    # 下表 TEXT 不行就改回原来的 VARCHAR(5000)
     sql_create_peopleinfo_table = "CREATE TABLE " + "`" + db_name_params + "`.`peopleinfo` (" \
         "`uid` CHAR(10) NOT NULL," \
         "`name` VARCHAR(45) NULL," \
@@ -583,5 +582,5 @@ if __name__ == '__main__':
     """
     修复 bug，详见 fixed 模块
     """
-    this_file_path = os.path.abspath(__file__)[:-17]
+    this_file_path = os.path.abspath(__file__)[:-20]
     os.system("\"" + this_file_path + "fixed.py\"")

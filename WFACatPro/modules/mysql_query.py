@@ -763,7 +763,7 @@ if __name__ == '__main__':
 
     while True:
         value = input('Enter number to select function: ')
-        if value not in ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'):
+        if value not in ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'):
             value = input('Enter number to select function: ')
 
         if value == '1':
