@@ -92,5 +92,7 @@ if __name__ == '__main__':
             os.system("\"" + this_file_path + "modules/mysql_query.py\"")
         elif cmd == 'tool':
             os.system("\"" + this_file_path + "modules/tools.py\"")
+        elif cmd == 'fix':
+            os.system("\"" + this_file_path + "modules/fixed.py\"")
         elif cmd == 'quit':
             exit('Bye ~')

@@ -75,9 +75,9 @@ def create_db_table(db_name_params):
         "`uid` CHAR(10) NOT NULL," \
         "`name` VARCHAR(45) NULL," \
         "`rel_me` VARCHAR(5) NULL," \
-        "`connect_to_my_friends` VARCHAR(5000) NULL," \
+        "`connect_to_my_friends` TEXT NULL," \
         "`connect_to_my_friends_count` INT NULL," \
-        "`connect_to_two_level_friends` VARCHAR(5000) NULL," \
+        "`connect_to_two_level_friends` TEXT NULL," \
         "`connect_to_two_level_friends_count` INT NULL," \
         "`province` VARCHAR(5) NULL," \
         "`city` VARCHAR(5) NULL," \
@@ -582,5 +582,5 @@ if __name__ == '__main__':
     """
     修复 bug，详见 fixed 模块
     """
-    this_file_path = os.path.abspath(__file__)[:-17]
+    this_file_path = os.path.abspath(__file__)[:-20]
     os.system("\"" + this_file_path + "fixed.py\"")

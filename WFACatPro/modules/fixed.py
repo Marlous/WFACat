@@ -25,6 +25,7 @@ def table_exists(cur_param, table_name_param):
 
 if __name__ == '__main__':
     DB_NAME = input("Enter database name that your created to fixed bug ：p")
+    print("fixing !")
     db = pymysql.connect(
         host=settings.DB_HOST,
         port=int(settings.DB_PORT),
@@ -60,3 +61,5 @@ if __name__ == '__main__':
                 if str(u_table_row[0]) in connect_to_my_friends_str:
                     cur.execute("DELETE FROM %s.u%s WHERE uid = \'%s\'" % (DB_NAME, str(row[0]), str(u_table_row[0])))
                     db.commit()
+
+    print("completed !")
