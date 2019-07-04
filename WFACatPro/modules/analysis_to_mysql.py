@@ -71,13 +71,14 @@ def create_db_table(db_name_params):
 
     cur.execute('USE ' + db_name_params + ';')
 
+    # 下表 TEXT 不行就改回原来的 VARCHAR(5000)
     sql_create_peopleinfo_table = "CREATE TABLE " + "`" + db_name_params + "`.`peopleinfo` (" \
         "`uid` CHAR(10) NOT NULL," \
         "`name` VARCHAR(45) NULL," \
         "`rel_me` VARCHAR(5) NULL," \
-        "`connect_to_my_friends` VARCHAR(5000) NULL," \
+        "`connect_to_my_friends` TEXT NULL," \
         "`connect_to_my_friends_count` INT NULL," \
-        "`connect_to_two_level_friends` VARCHAR(5000) NULL," \
+        "`connect_to_two_level_friends` TEXT NULL," \
         "`connect_to_two_level_friends_count` INT NULL," \
         "`province` VARCHAR(5) NULL," \
         "`city` VARCHAR(5) NULL," \
