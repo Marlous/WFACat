@@ -84,7 +84,7 @@ def create_db_table(db_name_params):
         "`location` VARCHAR(20) NULL," \
         "`description` VARCHAR(1000) NULL," \
         "`url` VARCHAR(100) NULL," \
-        "`profile_image_url` VARCHAR(120) NULL," \
+        "`profile_image_url` VARCHAR(200) NULL," \
         "`profile_url` VARCHAR(45) NULL," \
         "`domain` VARCHAR(45) NULL," \
         "`gender` VARCHAR(1) NULL," \

@@ -808,4 +808,4 @@ if __name__ == '__main__':
         if value == 'q':
             cur.close()
             db.close()
-            exit()
+            exit(1)
